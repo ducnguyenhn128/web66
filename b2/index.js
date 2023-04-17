@@ -17,6 +17,8 @@ const users = [
     { name: "Jessica Nguyen", age: 25, id: 012345 },
   ];
 
+
+  // example: http://localhost:3001/user/daniel/age/232?lte=true
   app.get('/user/:name/age/:age', (req, res, next) => {
     const name1 = req.params.name.toLowerCase();
     const age = req.params.age;
