@@ -1,0 +1,88 @@
+[
+    {
+        "name": "John Smith",
+        "age": 27,
+        "id": 123456,
+        "username": "johnsmith123",
+        "password": "GpF6vknPyF@!a",
+        "email": "johnsmith123@example.com",
+        "phone_number": "+84912345678",
+        "key": "12"
+    },
+    {
+        "name": "Sarah Johnson",
+        "age": 34,
+        "id": 234567,
+        "username": "sarahj89",
+        "password": "p@ssw0rd2",
+        "email": "sarahj89@example.com",
+        "phone_number": "+84912345678",
+        "key": ""
+    },
+    {
+        "name": "Michael Lee",
+        "age": 21,
+        "id": 345678,
+        "username": "michaellee123",
+        "password": "p@ssw0rd3",
+        "email": "michaellee123@example.com",
+        "phone_number": "+84912345678",
+        "key": "6579fc9b7bfb3423c02d5e955e0c7341"
+    },
+    {
+        "name": "Emily Davis",
+        "age": 45,
+        "id": 456789,
+        "username": "emilyd77",
+        "password": "p@ssw0rd4",
+        "key": ""
+    },
+    {
+        "name": "David Martinez",
+        "age": 29,
+        "id": 567890,
+        "username": "davidm456",
+        "password": "p@ssw0rd5",
+        "key": ""
+    },
+    {
+        "name": "Jennifer Adams",
+        "age": 38,
+        "id": 678901,
+        "username": "jennifera1",
+        "password": "p@ssw0rd6",
+        "key": ""
+    },
+    {
+        "name": "Daniel",
+        "age": 26,
+        "id": 789012,
+        "username": "daniel4u",
+        "password": "p@ssw0rd7",
+        "key": ""
+    },
+    {
+        "name": "Samantha Wilson",
+        "age": 31,
+        "id": 890123,
+        "username": "samanthaw88",
+        "password": "p@ssw0rd8",
+        "key": ""
+    },
+    {
+        "name": "William Brown",
+        "age": 42,
+        "id": 901234,
+        "username": "williamb22",
+        "password": "p@ssw0rd9",
+        "key": "64a9ae9d154fd2259473751c2aa06eac"
+    },
+    {
+        "name": "Jessica Nguyen",
+        "age": 25,
+        "id": 12345,
+        "username": "jessican33",
+        "password": "p@ssw0rd10",
+        "key": ""
+    }
+]
