@@ -84,5 +84,15 @@
         "username": "jessican33",
         "password": "p@ssw0rd10",
         "key": ""
+    },
+    {
+        "id": "42bd8c4c-122a-4f54-8d0f-f46ef710acad",
+        "username": "peterpan1204",
+        "password": "XaBB60WCJ02C",
+        "phone": "0912431234",
+        "age": "25",
+        "name": "peter smith",
+        "email": "peterpan123@gmail.com",
+        "key": "58d0fdffa494eebaf344b285c5811d3b"
     }
 ]
