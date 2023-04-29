@@ -6,7 +6,7 @@ const PORT = 3001;
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 
-
+// connect to mongoDB database
 const mongoDB = 'mongodb://127.0.0.1:27017/movie';
 main().catch((err) => console.log(err));
 async function main() {
@@ -14,33 +14,12 @@ async function main() {
 }
 // define schema
 const filmSchema = new mongoose.Schema({
-    name: {type: String, require: true},
+    title: {type: String, require: true},
     year: {type: String, requrie: true}
 })
 
 const a1 = mongoose.model('phimmoi', filmSchema)
 
-// a1.create({ name: 'In the new moon', year: '2010' } );
-console.log('a')
-
-
-
-// const db = [
-//     { "id": 1, "name": "Titanic", "isFree": true },
-//     { "id": 2, "name": "Avenger", "isFree": false },
-//     { "id": 3, "name": "Iron Man", "isFree": false },
-//     { "id": 4, "name": "Batman", "isFree": false },
-//     { "id": 5, "name": "Iron Man 2", "isFree": false },
-//     { "id": 6, "name": "Iron Man 3", "isFree": false },
-//     { "id": 7, "name": "Tenet", "isFree": false },
-//     { "id": 8, "name": "Inception", "isFree": true }
-//   ]
-
-// const db_free = () => {
-//     return(db.filter(el => el.isFree === true))
-// }
-
-// console.log('Free film: ' , db_free());
 
 // middleware
 function authenticate(req, res, next) {
@@ -62,15 +41,49 @@ function authenticate(req, res, next) {
 }
 
 
-app.get('/', async (req, res, next) => {
+app.get('/watch/:id', async (req, res) => {
+    const id = req.params.id; 
 
+    try {
+        const movie = await a1.findById(id)
+
+        if (!movie) {
+            // Movie not found
+            res.status(404).send('Movie not found');
+            return;
+        }
+        // Send back the movie
+        res.status(200).send(movie)
+    } catch(err) {
+        // handle error
+        console.error(err);
+        res.status(500).send('Internal Server Error');
+        return;
+    }
+
+})
+
+
+app.get('/', async (req, res, next) => {
     if (!req.body) {
         res.status(400).json({message: 'Ko co du lieu'})
     }
       // Use the Film model to find all films in the collection
     const films = await a1.find({});
-    console.log(films)
+    // console.log(films)
     res.send(films)
+
+})
+
+app.post('/movie/new/:title/:year' , (req, res, next) => {
+    const title = req.params.title;
+    const year = req.params.year;
+
+    a1.create({title, year})
+        .then(() => {
+            res.status(201).json({title, year})
+        })
+        .catch(err => console.log(err))
 
 })
 
