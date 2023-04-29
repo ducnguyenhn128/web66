@@ -1,5 +1,5 @@
 import React from 'react';
-import {Container, Row, Col, Nav, NavLink} from 'reactstrap'
+import {Container, Row, Col, Nav, NavLink, Button} from 'reactstrap'
 import './styles.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -29,8 +29,32 @@ const Profile = () => {
                 </Col>  
 
                 <Col xs={9}>
+                    {/* Statistic */}
                     <Row>
-
+                        <Col>
+                            <div className ='post-stas'>
+                                <h3>10</h3>
+                                <div>Posts</div>
+                            </div>
+                        </Col>
+                        <Col>
+                            <div className ='post-stas'>
+                                <h3>185</h3>
+                                <div>Likes</div>
+                            </div>
+                        </Col>
+                        <Col>
+                            <div className ='post-stas'>
+                                <h3>67</h3>
+                                <div>Comments</div>
+                            </div>                        
+                        </Col>
+                        <Col>
+                            <div className ='post-stas'>
+                                <h3>10</h3>
+                                <div>Followers</div>
+                            </div>                           
+                        </Col>
                     </Row>
                     <Row className='my-4'>
                         <Col className='px-0'><h3 >Recent Posts</h3></Col>
@@ -59,6 +83,15 @@ const Profile = () => {
                             <p>20 likes   5 comments</p>
                             <p>#hashtag1 #hashtag2</p>
                         </div>
+                    </Row>
+                    {/* Navigation */}
+                    <Row>
+                        <Col style={{ textAlign: 'right'}}>
+                            <Button > &lt;&lt; Prev Page</Button>
+                        </Col>
+                        <Col>
+                            <Button>Next Page &gt;&gt;</Button>
+                        </Col>
                     </Row>
                 </Col>
             </Row>
