@@ -7,7 +7,9 @@ const bcrypt = require('bcrypt');
 const saltRounds = 10;
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
+const secretkey = 'ab240f90aba431402985eddc45f4d413a33ebc925575c558168a98b2c38033a6';
 
+// ---------------------------------------------------------
 // connect to mongoDB Movie database
 mongoose.connect('mongodb://127.0.0.1:27017/movie')
 // define schema: everything start with Schema
@@ -32,7 +34,7 @@ function authenticate(req, res, next) {
     console.log('authHeader', req.headers);
     if (authHeader) {
         const token = authHeader.split(' ')[1];
-        jwt.verify(token, 'secretKey', (err, user) => {
+        jwt.verify(token, secretkey, (err, user) => {
             console.log('err', err);
             if (err) {
                 return res.status(403).json({ message: 'Token không hợp lệ' });
@@ -60,8 +62,7 @@ app.get('/', async (req, res, next) => {
 })
 
 // Get movie by ID
-app.get('/watch/id/:id', async (req, res) => {
-    // await mongoose.connect('mongodb://127.0.0.1:27017/movie')
+app.get('/watch/id/:id', authenticate, async (req, res) => {
     const id = req.params.id; 
     try {
         const movie = await a1.findById(id)
@@ -78,11 +79,10 @@ app.get('/watch/id/:id', async (req, res) => {
         res.status(500).send('Internal Server Error');
         return;
     }
-
 })
 
 // Get movie by title
-app.get('/watch/title/:title', async (req, res) => {
+app.get('/watch/title/:title', authenticate, async (req, res) => {
     const title1 = req.params.title;
     const movie = await a1.find({title: title1})
 
@@ -96,7 +96,7 @@ app.get('/watch/title/:title', async (req, res) => {
 })
 
 // create a new movie
-app.post('/movie/new/:title/:year' , (req, res, next) => {
+app.post('/movie/new/:title/:year' , authenticate, (req, res, next) => {
     const title = req.params.title;
     const year = req.params.year;
 
@@ -109,7 +109,7 @@ app.post('/movie/new/:title/:year' , (req, res, next) => {
 })
 
 // update a movie
-app.put('/movie/update/:id', async (req, res) => {
+app.put('/movie/update/:id', authenticate, async (req, res) => {
  const id = req.params.id;
  const title = req.body.title;
  const year = req.body.year;
@@ -132,7 +132,7 @@ app.put('/movie/update/:id', async (req, res) => {
 
 })
 // delete a movie (by Id)
-app.delete('/movie/delete/title/:title', async (req, res) => {
+app.delete('/movie/delete/title/:title', authenticate, async (req, res) => {
     const title = req.params.title;
     const result = await a1.deleteOne({title: title});
     console.log(result);
@@ -176,7 +176,7 @@ app.post('/login', async (req, res , next) => {
             userID: user.id,
             username: user.username,
         }
-        const secretkey = 'ab240f90aba431402985eddc45f4d413a33ebc925575c558168a98b2c38033a6';
+        
         const token = jwt.sign(payload, secretkey, {expiresIn: '30d'})
         res.status(200).json({token})
     } else {
@@ -205,11 +205,6 @@ app.post('/signup' , async (req, res, next) => {
         })
         .catch(err => console.log(err))
 })
-
-app.get('/freefilm', (req, res, next) => {
-    res.send(db_free())
-})
-
 
 
 app.listen(PORT)
