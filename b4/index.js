@@ -11,7 +11,13 @@ const secretkey = 'ab240f90aba431402985eddc45f4d413a33ebc925575c558168a98b2c3803
 
 // ---------------------------------------------------------
 // connect to mongoDB Movie database
-mongoose.connect('mongodb://127.0.0.1:27017/movie')
+mongoose.connect('mongodb://127.0.0.1:27017/movie', {useNewUrlParser: true, useUnifiedTopology: true})
+    .then(() => {
+        console.log('connected to mongodb')
+    })
+    .catch(err => {
+        console.log(err);
+    })
 // define schema: everything start with Schema
 const filmSchema = new mongoose.Schema({
     title: {type: String, require: true},
