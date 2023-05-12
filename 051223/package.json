@@ -1,19 +1,19 @@
 {
-  "name": "b6hw",
+  "name": "051223",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon ./src/index.js"
+    "dev": "nodemon src/index.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "express": "^4.18.2",
-    "express-handlebars": "^7.0.7",
-    "handlebars": "^4.7.7",
-    "mongoose": "^7.1.0",
+    "mongoose": "^7.1.1"
+  },
+  "devDependencies": {
     "nodemon": "^2.0.22"
   }
 }
