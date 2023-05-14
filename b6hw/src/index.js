@@ -17,7 +17,7 @@ app.use('/api', router)
 
 
 app.get('/', (req, res) => {
-
+    res.render('home.handlebars')
 })
 
 app.listen(PORT, () => {
