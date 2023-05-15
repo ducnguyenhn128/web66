@@ -44,6 +44,7 @@ const userCRUD = {
     // 3. Create new User
     post: async function(req, res) {
         // const newUser = req.body;
+        console.log('received')
         const {username, age, email} = req.body;
         // checking username, email still in the DB ???
         try {
