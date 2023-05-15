@@ -1,10 +1,11 @@
 import React, {useState} from 'react'
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import { Navigate } from 'react-router-dom';
 import './styles.css'
 const Register = () => {
     const [newUser, setNewUser] = useState({})
-    
+
     const handleChange = ({target}) => {
         const {name, value} = target;
         setNewUser(prev => ({
@@ -23,6 +24,8 @@ const Register = () => {
         else {
             const {username, email, password} = newUser;
             const formData = {username, email, password};
+            // reset Form 
+            setNewUser({})
             // send data
             fetch('http://localhost:8000/api/', {
                 method: 'POST',
@@ -35,11 +38,15 @@ const Register = () => {
             .then(data => {
               // Handle the response data
               console.log(data);
+              alert('Success')
             })
             .catch(error => {
               // Handle any errors
               console.error(error);
             });
+
+            // Redirect to the homepage after creating the user
+            <Navigate to="/" />;
         }
     }
 
