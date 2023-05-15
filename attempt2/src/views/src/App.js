@@ -7,6 +7,9 @@ import Register from "./register/register";
 import SignIn from "./signin";
 import Profile from "./profile";
 import Posts from "./profile/posts";
+import Follows from "./profile/follows";
+import Password from "./profile/password";
+import Privacy from "./profile/privacy";
 
 function App() {
   
@@ -17,6 +20,9 @@ function App() {
         <Route path='/signin' element={ <SignIn/> } />
         <Route path='/profile' element={ <Profile/> } />
         <Route path='/posts' element={ <Posts/> } />
+        <Route path='/follows' element={ <Follows/> } />
+        <Route path='/password' element={ <Password/> } />
+        <Route path='/privacy' element={ <Privacy/> } />
     </Route>
   ));
   return (
