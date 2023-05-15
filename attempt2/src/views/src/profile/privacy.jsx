@@ -2,25 +2,13 @@ import Dropdown from 'react-bootstrap/Dropdown';
 
 
 import './styles.css'
+import ProfileNavigation from './profileNavi';
 
 const Privacy = () => {
     return (
         <div className="d-flex">
             {/* Navigation Left Column */}
-            <div className="col-3 bg-success">
-                {/* Navigation */}
-                <div className='profile-avt'>Avatar</div>
-                <h3 className='text-white'>Peter Schikel</h3>
-
-                <div className='profile-navi bg-light col-8 mx-auto py-2'>
-                    <p>Profile</p>
-                    <p>Post</p>
-                    <p>Followes</p>
-                    <p>My Info</p>
-                    <p>Privacy</p>
-                    <p>Password</p>
-                </div>
-            </div>
+            <ProfileNavigation />
 
             {/* Right Column */}
             <div className="col-9 bg-light">

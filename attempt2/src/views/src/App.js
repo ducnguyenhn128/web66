@@ -18,11 +18,11 @@ function App() {
         <Route path='/' element={ <Homepage/> } />
         <Route path='/register' element={ <Register/> } />
         <Route path='/signin' element={ <SignIn/> } />
-        <Route path='/profile' element={ <Profile/> } />
-        <Route path='/posts' element={ <Posts/> } />
-        <Route path='/follows' element={ <Follows/> } />
-        <Route path='/password' element={ <Password/> } />
-        <Route path='/privacy' element={ <Privacy/> } />
+        <Route path='profile' element={ <Profile/> }/> 
+          <Route path='posts' element={ <Posts/> } />
+          <Route path='follows' element={ <Follows/> } />
+          <Route path='password' element={ <Password/> } />
+          <Route path='privacy' element={ <Privacy/> } />
     </Route>
   ));
   return (

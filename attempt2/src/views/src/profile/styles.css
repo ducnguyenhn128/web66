@@ -14,3 +14,13 @@
     background-color: beige;
     margin: 20px auto 20px auto;
 }
+
+.profile_link {
+    text-decoration: none;
+    color: black;
+    
+}
+
+.profile_link .custom-link:visited {
+    color: red;
+  }
