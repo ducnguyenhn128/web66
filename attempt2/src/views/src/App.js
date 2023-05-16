@@ -24,7 +24,7 @@ function App() {
               <Route path='posts' element={ <Posts/> } />
               <Route path='follows' element={ <Follows/> } />
               <Route path='password' element={ <Password/> } />
-              <Route path='privacy' element={ <Privacy/> } />
+              <Route path='/profile/privacy' element={ <Privacy/> } />
               <Route path='/profile/myinfo' element = { <MyInfo />} />
     </Route>
   ));
