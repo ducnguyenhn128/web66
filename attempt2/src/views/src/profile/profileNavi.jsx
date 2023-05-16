@@ -25,6 +25,9 @@ const ProfileNavigation = () => {
                     <div className="my-4">
                         <NavLink className='profile_link' to='/posts'>Privacy</NavLink>
                     </div>
+                    <div className="my-4">
+                        <NavLink className='profile_link' to='/profile/myinfo'>My Info</NavLink>
+                    </div>
                 </div>
             </div>
     );

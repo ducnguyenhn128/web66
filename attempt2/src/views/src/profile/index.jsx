@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 import './styles.css'
 import ProfileNavigation from './profileNavi';
 
@@ -53,6 +53,7 @@ const Profile = () => {
                     </div>
                 </div>
             </div>
+            <Outlet />
         </div>
     );
 }

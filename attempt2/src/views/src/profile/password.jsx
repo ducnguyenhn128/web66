@@ -35,43 +35,40 @@ const Password = () => {
         <ProfileNavigation />
 
         <div className="col-9 bg-light">
-         <div className='register col-6 mx-auto'>
-             <h2 className="mb-3 mt-3">Change your password</h2>
-             <Form className='col-9 mx-auto' onSubmit={handleSubmit} >
+            <div className='register col-6 mx-auto'>
+                <h2 className="mb-3 mt-3">Change your password</h2>
+                <Form className='col-9 mx-auto' onSubmit={handleSubmit} >
 
-                 <Form.Group className="mb-3" controlId="formBasicPassword">
-                     <Form.Control type="password" placeholder="Current Password" 
-                        onChange={handleChange}
-                        value={newPass.currentpass || ''}
-                        name='currentpass'
-                     />
-                 </Form.Group>
+                    <Form.Group className="mb-3" controlId="formBasicPassword">
+                        <Form.Control type="password" placeholder="Current Password" 
+                            onChange={handleChange}
+                            value={newPass.currentpass || ''}
+                            name='currentpass'
+                        />
+                    </Form.Group>
 
 
-                 <Form.Group className="mb-3" controlId="formBasicPassword">
-                     <Form.Control type="password" placeholder="New Password" 
-                        onChange={handleChange}
-                        value={newPass.newpass || ''}
-                        name='newpass'
-                     />
-                 </Form.Group>
+                    <Form.Group className="mb-3" controlId="formBasicPassword">
+                        <Form.Control type="password" placeholder="New Password" 
+                            onChange={handleChange}
+                            value={newPass.newpass || ''}
+                            name='newpass'
+                        />
+                    </Form.Group>
 
-                 <Form.Group className="mb-3" controlId="formBasicPassword">
-                     <Form.Control type="password" placeholder="Confirm Password" 
-                        onChange={handleChange}
-                        value={newPass.confirm || ''}
-                        name='confirm'
-                     />
-                 </Form.Group>
+                    <Form.Group className="mb-3" controlId="formBasicPassword">
+                        <Form.Control type="password" placeholder="Confirm Password" 
+                            onChange={handleChange}
+                            value={newPass.confirm || ''}
+                            name='confirm'
+                        />
+                    </Form.Group>
 
-                 <Button variant="primary" type="submit">
-                     Save
-                 </Button>
-             </Form>
-         </div>
-            
-        
-
+                    <Button variant="primary" type="submit">
+                        Save
+                    </Button>
+                </Form>
+            </div>
         </div>
     </div>
     );

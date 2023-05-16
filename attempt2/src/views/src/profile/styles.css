@@ -24,3 +24,17 @@
 .profile_link .custom-link:visited {
     color: red;
   }
+
+
+
+/* My Info */
+.profile-myInfo-allphoto {
+    /* position: absolute; */
+}
+
+.profile-myInfo-avt {
+    width: 150px;
+    height: 150px;
+    background-color: cadetblue;
+    border-radius: 100%;
+}
