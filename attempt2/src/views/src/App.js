@@ -12,6 +12,7 @@ import Password from "./profile/password";
 import Privacy from "./profile/privacy";
 import Header from "./header";
 import MyInfo from "./profile/myinfo";
+import ViewPost from "./posts";
 
 function App() {
   
@@ -26,6 +27,7 @@ function App() {
               <Route path='password' element={ <Password/> } />
               <Route path='/profile/privacy' element={ <Privacy/> } />
               <Route path='/profile/myinfo' element = { <MyInfo />} />
+          <Route path='/viewpost' element = { <ViewPost /> } />
     </Route>
   ));
   return (
