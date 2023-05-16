@@ -8,8 +8,8 @@ const ViewPost = () => {
 
     }
     return (  
-        <div className="bg-white">
-            <div className="col-4 text-start mx-auto mt-4 bg-light p-3 ">
+        <div>
+            <div className="text-start mx-auto mt-4 p-3 viewpost">
                 {/* user post */}
                 <div className="d-flex">
                     <div className="user-comment-avt">
