@@ -1,11 +1,11 @@
 import React, {useState} from 'react'
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import { Navigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import './styles.css'
 const Register = () => {
     const [newUser, setNewUser] = useState({})
-
+    const navigate = useNavigate();
     const handleChange = ({target}) => {
         const {name, value} = target;
         setNewUser(prev => ({
@@ -38,15 +38,15 @@ const Register = () => {
             .then(data => {
               // Handle the response data
               console.log(data);
-              alert('Success')
+              // Redirect to the homepage after creating the user
+              navigate('/')
             })
             .catch(error => {
               // Handle any errors
               console.error(error);
             });
 
-            // Redirect to the homepage after creating the user
-            <Navigate to="/" />;
+            
         }
     }
 

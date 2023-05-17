@@ -25,8 +25,6 @@ app.engine('hbs', engine({
 app.set('view engine', 'hbs')
 app.set('views', path.join(__dirname, '/src/views'))
 
-// console.log('PATH: ', path.join(__dirname), 'views')
-
 // API End Point
 app.get('/message', (req, res) => {
     res.json({ message: "Hello from server!" });

@@ -14,13 +14,13 @@ const ProfileNavigation = () => {
                         </NavLink>
                     </div>
                     <div className="my-4">
-                        <NavLink className='profile_link' to='/posts'>Posts</NavLink>
+                        <NavLink className='profile_link' to='/profile/posts'>Posts</NavLink>
                     </div>
                     <div className="my-4">
-                        <NavLink className='profile_link' to='/follows'>Follows</NavLink>
+                        <NavLink className='profile_link' to='/profile/follows'>Follows</NavLink>
                     </div>
                     <div className="my-4">
-                        <NavLink className='profile_link' to='/password'>Password</NavLink>
+                        <NavLink className='profile_link' to='profile/password'>Password</NavLink>
                     </div>
                     <div className="my-4">
                         <NavLink className='profile_link' to='/profile/privacy'>Privacy</NavLink>

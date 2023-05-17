@@ -15,21 +15,49 @@ import MyInfo from "./profile/myinfo";
 import ViewPost from "./posts";
 
 function App() {
-  
-  const router = createBrowserRouter(createRoutesFromElements(
-    <Route>
-          <Route path='/' element={ <Homepage/> } /> 
-          <Route path='/register' element={ <Register/> } />
-          <Route path='/signin' element={ <SignIn/> } />
-          <Route path='/profile' element={ <Profile/> }/> 
-              <Route path='posts' element={ <Posts/> } />
-              <Route path='follows' element={ <Follows/> } />
-              <Route path='password' element={ <Password/> } />
-              <Route path='/profile/privacy' element={ <Privacy/> } />
-              <Route path='/profile/myinfo' element = { <MyInfo />} />
-          <Route path='/viewpost' element = { <ViewPost /> } />
-    </Route>
-  ));
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <Homepage />,
+    },
+    {
+      path: '/register',
+      element:  <Register/> 
+    },
+    {
+      path: '/signin',
+      element:  <SignIn/> 
+    },
+    {
+      path: 'profile',
+      element: <Profile/> ,
+      children: [
+        {path: 'posts', element: <Posts/>},
+        {path: 'follows', element: <Follows />},
+        {path: 'passwords', element: <Password />},
+        {path: 'privacy', element: <Privacy />},
+        {path: 'myinfo', element: <MyInfo />}
+      ]
+    },
+    {
+      path: 'viewpost',
+      element: <ViewPost />
+    }
+  ]);
+  // const router1 = createBrowserRouter(createRoutesFromElements(
+  //   <Route>
+  //         <Route path='/' element={ <Homepage/> } /> 
+  //         <Route path='/register' element={ <Register/> } />
+  //         <Route path='/signin' element={ <SignIn/> } />
+  //         <Route path='/profile' element={ <Profile/> }/> 
+  //             <Route path='posts' element={ <Posts/> } />
+  //             <Route path='follows' element={ <Follows/> } />
+  //             <Route path='password' element={ <Password/> } />
+  //             <Route path='/profile/privacy' element={ <Privacy/> } />
+  //             <Route path='/profile/myinfo' element = { <MyInfo />} />
+  //         <Route path='/viewpost' element = { <ViewPost /> } />
+  //   </Route>
+  // ));
   return (
     <div className="App">
         <RouterProvider router={ router } />

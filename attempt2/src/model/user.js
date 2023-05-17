@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
 
 // Connect to MongoDB
 const URL = 'mongodb+srv://ducnguyendautunhanha:gvAXtNESbIlZqOjb@cluster0.nkverec.mongodb.net/?retryWrites=true&w=majority'
@@ -15,12 +16,15 @@ const userSchema = {
     },
     age: {
         type: Number,
-        require: true,
     },
     email: {
         type: String,
         require: true,
     },
+    password: {
+        type: String,
+        require: true,
+    }
 }
 
 // Define Model
@@ -45,7 +49,7 @@ const userCRUD = {
     post: async function(req, res) {
         // const newUser = req.body;
         console.log('received')
-        const {username, age, email} = req.body;
+        const {username, email, password} = req.body;
         // checking username, email still in the DB ???
         try {
             const foundUser = await userModel.findOne({username: username})
@@ -56,10 +60,15 @@ const userCRUD = {
             if (foundEmail) {
                 res.status(500).send('Email has taken')
             }
+            // hash password by 10 rounds
+            const hashPassword = await bcrypt.hash(password, 10);
             // create new User
-            const newUser = new userModel(req.body)
+            const newUser = new userModel({password: hashPassword, username, email});
+
             await newUser.save();
-            res.status(201).send('Create new user success')
+            res.status(201).json({
+                message: 'Create new user success'
+            })
         } catch (err) {
             console.log(err);
             res.status(500).send();

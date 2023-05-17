@@ -2,7 +2,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import './styles.css'
 import ProfileNavigation from './profileNavi';
-
+import { Outlet } from "react-router-dom";
 import React, { useState } from 'react';
 
 const Password = () => {
@@ -11,9 +11,6 @@ const Password = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(newPass);
-        // console.log(newPass.newpass === 'aa')
-        // console.log(newPass.confirm === 'aa')
-        // console.log(newPass.newpass === newPass.confirm)
         
         if (newPass.newpass !== newPass.confirm) {
             alert('Password not match')
