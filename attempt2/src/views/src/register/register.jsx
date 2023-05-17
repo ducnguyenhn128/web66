@@ -2,7 +2,8 @@ import React, {useState} from 'react'
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { useNavigate } from "react-router-dom";
-import './styles.css'
+import './styles.css';
+import cover from '../photo/facebook_cover_photo_1.png'
 const Register = () => {
     const [newUser, setNewUser] = useState({})
     const navigate = useNavigate();
@@ -44,14 +45,13 @@ const Register = () => {
             .catch(error => {
               // Handle any errors
               console.error(error);
-            });
-
-            
+            });  
         }
     }
 
     return (
-        <div className='register col-6 mx-auto'>
+        <div className='register col-6 mx-auto mt-4'>
+            <img src = {cover} alt='cover-logo' style={{width: '400px'}}/>
             <h2 className="mb-3 mt-3">Register an account here</h2>
             <Form className='col-9 mx-auto' onSubmit={handleSubmit}>
                 <Form.Group className="mb-3">

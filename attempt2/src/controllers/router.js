@@ -14,5 +14,6 @@ router.get('/:id', userCRUD.getById)
 router.post('/', userCRUD.post)
 router.put('/:id', userCRUD.put)
 router.delete('/:id', userCRUD.delete)
+router.post('/login', userCRUD.login)
 
 module.exports = router
