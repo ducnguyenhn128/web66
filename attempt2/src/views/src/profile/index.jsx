@@ -1,60 +1,49 @@
-import { Link, Outlet } from 'react-router-dom';
+import { Link, Route, Routes} from 'react-router-dom';
+import { ProSidebarProvider } from 'react-pro-sidebar'
 import './styles.css'
-import ProfileNavigation from './profileNavi';
-
+import { Sidebar, Menu, MenuItem} from 'react-pro-sidebar';
+import Password from './password';
+import Privacy from './privacy';
+import MyInfo from './myinfo';
+import Posts from './posts';
+import ProfileStas from './profile';
+import Header from '../header';
 const Profile = () => {
     return (
         // Test...
-        <div className="d-flex">
+        <ProSidebarProvider>
+            <Header />
+            <Sidebar style={{float: 'left', width: '20%'}}>
+                <Menu>
+                    <div style={{width: '100px', height: '100px', backgroundColor: '#6a6b', borderRadius: '100%', margin: '20px auto'}}>
 
-            <div className="col-9 bg-light">
-                {/* Statistic */}
-                <div className="d-flex d-flex justify-content-between mt-3">  
-                    <div className="profile-stats col-2 bg-secondary mx-2">
-                        <h3>10</h3>
-                        <div>Posts</div>
                     </div>
-                    <div className="profile-stats col-2 bg-secondary mx-2">
-                        <h3>10</h3>
-                        <div>Likes</div>
-                    </div>
-                    <div className="profile-stats col-2 bg-secondary mx-2 ">
-                        <h3>10</h3>
-                        <div>Comments</div>
-                    </div>
-                    <div className="profile-stats col-2 bg-secondary mx-2">
-                        <h3>10</h3>
-                        <div>Followes</div>
-                    </div>
+                    <h3>Bùi Phương Linh</h3>
+                    <MenuItem component={<Link to='./'/>}> Profile </MenuItem>
+                    <MenuItem component={<Link to='./posts'/>}> Posts </MenuItem>
+                    <MenuItem component={<Link to='./follows'/>}> Follows </MenuItem>
+                    <MenuItem component={<Link to='./passwords'/>}> Password </MenuItem>
+                    <MenuItem component={<Link to='./privacy'/>}> Privacy </MenuItem>
+                    <MenuItem component={<Link to='./myinfo'/>}> My Info </MenuItem>
                     
-                </div>
-                {/* Posts  */}
-                <div className='mt-4'>
-                    {/* Recent Post line */}
-                    <div className='d-flex justify-content-between mx-2'>
-                        <h4>Recent Post</h4>    
-                        <Link>See more</Link>
-                    </div>
-                    <div className="bg-white text-start mx-2">
-                        <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
-                    </div>
-                    <div className="bg-white text-start mx-2">
-                        <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
-                    </div>
-                    <div className="bg-white text-start mx-2">
-                        <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
-                    </div>
-                    <div className="bg-white text-start mx-2">
-                        <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
-                    </div>
-                    <div className="bg-white text-start mx-2">
-                        <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
-                    </div>
-                </div>
-                
+                </Menu>
+            </Sidebar>
+            <div style={{ height: "100%", width: "100%", marginLeft: '20%' }}>
+                <main>
+                    <Routes>
+                        <Route path='/' element={ <ProfileStas />} /> 
+                        <Route path='/passwords' element={ <Password />} />
+                        <Route path='/privacy' element={ <Privacy />} />
+                        <Route path='/follows' element={ <Privacy />} />
+                        <Route path='/myinfo' element={ <MyInfo />} />
+                        <Route path='/posts' element={ <Posts />} />
+                    </Routes>
+                </main>
+
             </div>
-            
-        </div>
+        </ProSidebarProvider>
+
+        
     );
 }
  

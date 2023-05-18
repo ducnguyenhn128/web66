@@ -2,13 +2,10 @@ import { Link } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 
 import './styles.css'
-import ProfileNavigation from './profileNavi';
 
 const Posts = () => {
     return (
         <div className="d-flex">
-            {/* Navigation */}
-            <ProfileNavigation />
 
             <div className="col-9 bg-light">
             <Form className='mx-2 mt-3'>

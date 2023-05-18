@@ -2,7 +2,6 @@ import Dropdown from 'react-bootstrap/Dropdown';
 
 
 import './styles.css'
-import ProfileNavigation from './profileNavi';
 import BlockedUser from './utils/BlockedUser';
 
 const Privacy = () => {
@@ -10,7 +9,7 @@ const Privacy = () => {
     return (
         <div className="d-flex">
             {/* Navigation Left Column */}
-            <ProfileNavigation />
+            {/* <ProfileNavigation /> */}
 
             {/* Right Column */}
             <div className="col-9 bg-light">

@@ -1,7 +1,6 @@
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import './styles.css'
-import ProfileNavigation from './profileNavi';
 
 import React, { useState } from 'react';
 
@@ -9,7 +8,6 @@ const MyInfo = () => {
     return (  
         <div className="d-flex">
             {/* Navigation */}
-            <ProfileNavigation />
             
             {/* Right column: Profile picture, info ... */}
             <div className="col-9 bg-light">

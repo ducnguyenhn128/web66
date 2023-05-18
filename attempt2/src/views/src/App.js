@@ -13,7 +13,6 @@ import Header from "./header";
 import MyInfo from "./profile/myinfo";
 import ViewPost from "./posts";
 import LogIn from "./login";
-import MUI from "./MUI/mui";
 
 function App() {
   const router = createBrowserRouter([
@@ -45,8 +44,8 @@ function App() {
       element: <ViewPost />
     },
     {
-      path: 'mui',
-      element: <MUI />
+      path: 'profile/password1222',
+      element: <Password />
     }
   ]);
 

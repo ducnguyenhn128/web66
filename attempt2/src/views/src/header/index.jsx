@@ -5,10 +5,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MessageIcon from '@mui/icons-material/Message';
 import PersonIcon from '@mui/icons-material/Person';
-import SearchIcon from '@mui/icons-material/Search';
 
-// import { Icon } from '@mui/material';
-// import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 const Header = () => {
   return (
     <div class='home-header'>

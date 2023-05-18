@@ -1,7 +1,6 @@
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import './styles.css'
-import ProfileNavigation from './profileNavi';
 import { Outlet } from "react-router-dom";
 import React, { useState } from 'react';
 
@@ -29,7 +28,7 @@ const Password = () => {
     return (
         <div className="d-flex">
         {/* Navigation */}
-        <ProfileNavigation />
+        {/* <ProfileNavigation /> */}
 
         <div className="col-9 bg-light">
             <div className='register col-6 mx-auto'>
