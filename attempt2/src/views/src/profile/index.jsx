@@ -6,9 +6,6 @@ const Profile = () => {
     return (
 
         <div className="d-flex">
-            <Outlet />
-            {/* Navigation */}
-            <ProfileNavigation />
 
             <div className="col-9 bg-light">
                 {/* Statistic */}

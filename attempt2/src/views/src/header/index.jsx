@@ -1,7 +1,6 @@
 import React from 'react';
 import Button from 'react-bootstrap/esm/Button';
 import './styles.css'
-import favicon from '../photo/linkedin_banner_image_1.png';
 import MenuIcon from '@mui/icons-material/Menu';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MessageIcon from '@mui/icons-material/Message';
