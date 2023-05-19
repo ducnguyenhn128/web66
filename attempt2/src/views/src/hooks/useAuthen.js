@@ -11,7 +11,7 @@ const useAuthentication = () => {
 
     const checkLoggedIn = async () => {
     try {
-        const response = await axios.get('/api/check-login');
+        const response = await axios.get('/api/checklogin');
 
         if (response.status === 200) {
         setLoggedIn(true);

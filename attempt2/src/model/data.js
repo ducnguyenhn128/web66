@@ -109,3 +109,8 @@ const userProtype =
 }
 
 module.exports = userProtype;
+
+
+// username: phuonglinh1
+// pass: abc12345
+// token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI2NDY3MzM0NTczYzgwOTA3MjkxMjViYTYiLCJ1c2VybmFtZSI6InBodW9uZ2xpbmgxIiwiaWF0IjoxNjg0NTExMzU1LCJleHAiOjE2ODcxMDMzNTV9._O3BKi7nstpBlDzKbBM37Wa9yfh3HMtuK3mhsyljfvI

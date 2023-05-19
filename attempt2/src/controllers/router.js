@@ -6,6 +6,10 @@ morgan('short');
 const authentication = require('./middleware')
 
 router.post('/login', userCRUD.login)
+// testing api check login
+router.get('/checklogin', authentication, (req, res) => {
+    res.status(200).send('LOGIN OK')
+})
 
 router.use(authentication)
 
