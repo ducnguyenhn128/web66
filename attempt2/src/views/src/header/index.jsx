@@ -5,14 +5,10 @@ import MenuIcon from '@mui/icons-material/Menu';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MessageIcon from '@mui/icons-material/Message';
 import PersonIcon from '@mui/icons-material/Person';
-import { TextField } from '@mui/material';
-// import { makeStyles } from '@mui/styles';
 
 
 
 const Header = () => {
-
-
   return (
     <div class='home-header'>
       <div class='d-flex justify-content-between bg-success p-2'>
@@ -35,7 +31,6 @@ const Header = () => {
               <a href='/' class='me-4 text-white fs-3'><PersonIcon /></a>
           </div>
       </div>
-      {/* <hr /> */}
     </div>
   );
 }

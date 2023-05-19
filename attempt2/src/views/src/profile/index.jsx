@@ -8,6 +8,7 @@ import MyInfo from './myinfo';
 import Posts from './posts';
 import ProfileStas from './profile';
 import Header from '../header';
+import Follows from './follows';
 const Profile = () => {
     return (
         // Test...
@@ -34,7 +35,7 @@ const Profile = () => {
                         <Route path='/' element={ <ProfileStas />} /> 
                         <Route path='/passwords' element={ <Password />} />
                         <Route path='/privacy' element={ <Privacy />} />
-                        <Route path='/follows' element={ <Privacy />} />
+                        <Route path='/follows' element={ <Follows/>} />
                         <Route path='/myinfo' element={ <MyInfo />} />
                         <Route path='/posts' element={ <Posts />} />
                     </Routes>

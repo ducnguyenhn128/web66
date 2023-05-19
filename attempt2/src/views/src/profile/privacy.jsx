@@ -2,16 +2,14 @@ import Dropdown from 'react-bootstrap/Dropdown';
 
 
 import './styles.css'
-import BlockedUser from './utils/BlockedUser';
+import BlockedUser from './utils/actionVsUser';
+import { Row } from 'react-bootstrap';
 
 const Privacy = () => {
     const totalBlockedUser = 20;
     return (
         <div className="d-flex">
-            {/* Navigation Left Column */}
-            {/* <ProfileNavigation /> */}
 
-            {/* Right Column */}
             <div className="col-9 bg-light">
                 {/* Who can view */}
                 <div className='d-flex justify-content-between mx-2 mt-3' >
@@ -54,14 +52,13 @@ const Privacy = () => {
                 <div className='text-start mt-4'>
                     <h4 className='mx-2'>Blocked user:  {totalBlockedUser}</h4>
                     {/* render a list */}
-                    <div className='d-flex flex-wrap '>
-                        <BlockedUser />
-                        <BlockedUser />
-                        <BlockedUser />
-                        <BlockedUser />
-                        <BlockedUser />
-                        <BlockedUser />
-                    </div>
+                    <Row className='d-flex flex-wrap '>
+                        <BlockedUser actionType='Unblock' className='col-3' />
+                        <BlockedUser actionType='Unblock' className='col-3' />
+                        <BlockedUser actionType='Unblock' className='col-3' />
+                        <BlockedUser actionType='Unblock' className='col-3' />
+                        <BlockedUser actionType='Unblock' className='col-3' />
+                    </Row>
                     
                 </div>
             </div>
