@@ -1,4 +1,4 @@
-{
+const sample = {
     "id" : "417238413274412345" ,
     "username" : "peter12b" ,
     "password" : "3142fhads8345yc1324hfdsa" ,
@@ -18,9 +18,19 @@
         "posts" : "3",
         "friends" : "40"
     },
-    "avatar" : {
-        "profile_pic" : "",
-        "cover_photo" : ""
+    "avatar": {
+        "profile_pic": {
+            "url": "https://example.com/profile_pic.jpg",
+            "width": 800,
+            "height": 600,
+            "caption": "Profile picture"
+        },
+        "cover_photo": {
+            "url": "https://example.com/cover_photo.jpg",
+            "width": 1200,
+            "height": 800,
+            "caption": "Cover photo"
+        }
     },
     "follow" : {
         "follower" : ["413298517325", "124713247413241", "4713247134714"],
@@ -52,3 +62,50 @@
         }
     ] 
 }
+
+const userProtype = 
+{
+    "info" : {
+        "fullname" : "",
+        "DOB" : "",
+        "gerder" : "",
+        "location" : {
+            "city" : "",
+            "country" : ""
+        },
+        "bio" : ""
+    },
+    "stats" : {
+        "follower" : 0,
+        "following" : 0,
+        "posts" : 0,
+        "friends" : 0
+    },
+    "avatar": {
+        "profile_pic": {
+            "url": "https://example.com/profile_pic.jpg",
+            "width": 800,
+            "height": 600,
+            "caption": "Profile picture"
+        },
+        "cover_photo": {
+            "url": "https://example.com/cover_photo.jpg",
+            "width": 1200,
+            "height": 800,
+            "caption": "Cover photo"
+        }
+    },
+    "follow" : {
+        "follower" : [],
+        "following" : [] ,
+        "blocked" : [] 
+    },
+    "privacy" : {
+        "who_can_view" : "everyone",
+        "who_can_comment" : "friend"
+    },
+    "posts " : [
+    ] 
+}
+
+module.exports = userProtype;

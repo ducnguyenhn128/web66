@@ -2,11 +2,12 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const secretkey = 'ab240f90aba431402985eddc45f4d413a33ebc925575c558168a98b2c38033a6';
 const jwt = require('jsonwebtoken')
+const userProtype = require('./data');
 // Connect to MongoDB
 const URL = 'mongodb+srv://ducnguyendautunhanha:gvAXtNESbIlZqOjb@cluster0.nkverec.mongodb.net/?retryWrites=true&w=majority'
 mongoose.connect(URL)
 // Choose Database
-const db = mongoose.connection.useDb('movie');
+const db = mongoose.connection.useDb('openspace');
 
 
 // Define Schema
@@ -25,11 +26,17 @@ const userSchema = {
     password: {
         type: String,
         require: true,
-    }
+    }, 
+    info : {type: Object},
+    stats: {type: Object},
+    avatar: {type: Object},
+    follow: {type: Object},
+    privacy: {type: Object},
+    posts: {type: Array}
 }
 
 // Define Model
-const userModel = db.model('film', userSchema)
+const userModel = db.model('users', userSchema)
 
 const userCRUD = {
     // 1. Get All Users
@@ -64,7 +71,7 @@ const userCRUD = {
             // hash password by 10 rounds
             const hashPassword = await bcrypt.hash(password, 10);
             // create new User
-            const newUser = new userModel({password: hashPassword, username, email});
+            const newUser = new userModel({password: hashPassword, username, email, ...userProtype});
 
             await newUser.save();
             res.status(201).json({
@@ -120,6 +127,12 @@ const userCRUD = {
             }
             
             const token = jwt.sign(payload, secretkey, {expiresIn: '30d'})
+            // Set the token as a cookie in the response
+            res.cookie('jwtToken', token, {
+                httpOnly: true,
+                secure: true,
+                // Other cookie options if needed
+            });
             res.status(200).json({token})
         } else {
             res.status(401).send('Wrong password')

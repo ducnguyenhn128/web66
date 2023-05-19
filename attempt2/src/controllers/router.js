@@ -3,17 +3,19 @@ const userCRUD = require('../model/user')
 const router = express.Router();
 const morgan = require('morgan')
 morgan('short');
+const authentication = require('./middleware')
 
+router.post('/login', userCRUD.login)
 
-// router.get('/', (req, res) => {
-//     res.status(200).send('Haloo again')
-// })
+router.use(authentication)
 
 router.get('/all', userCRUD.get)
 router.get('/:id', userCRUD.getById)
 router.post('/', userCRUD.post)
 router.put('/:id', userCRUD.put)
 router.delete('/:id', userCRUD.delete)
-router.post('/login', userCRUD.login)
+
+
+
 
 module.exports = router

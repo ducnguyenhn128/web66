@@ -29,7 +29,7 @@ const Profile = () => {
                     
                 </Menu>
             </Sidebar>
-            <div style={{ height: "100%", width: "100%", marginLeft: '20%' }}>
+            {/* <div style={{ height: "100%", marginLeft: '20%', backgroundColor: '#a1a3' }}> */}
                 <main>
                     <Routes>
                         <Route path='/' element={ <ProfileStas />} /> 
@@ -41,7 +41,7 @@ const Profile = () => {
                     </Routes>
                 </main>
 
-            </div>
+            {/* </div> */}
         </ProSidebarProvider>
 
         

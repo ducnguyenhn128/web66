@@ -3,7 +3,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { useNavigate } from "react-router-dom";
 import './styles.css';
-import cover from '../photo/facebook_cover_photo_1.png'
+import cover from '../photo/logoheader.jpg'
 const Register = () => {
     const [newUser, setNewUser] = useState({})
     const navigate = useNavigate();

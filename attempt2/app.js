@@ -1,3 +1,4 @@
+// require('dotenv').config();
 const express = require('express');
 const router = require('./src/controllers/router')
 const PORT = process.env.PORT || 8000;
@@ -33,9 +34,13 @@ app.get('/message', (req, res) => {
 //     res.render('home')
 // })
 
-// app.get('/news', (req, res) => {
-//     res.render('news')
-// })
+app.get('/news', (req, res) => {
+    res.send('news')
+})
+
+app.get('/a1', (req, res) => {
+    res.send('ok')
+})
 
 app.use('/api', router)
 
