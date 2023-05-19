@@ -8,8 +8,8 @@ const ActionVsUser = (props) => {
     const actionType = props.actionType;
     return (
         <Container >
-            <Row className='d-flex blocked_user m-2'>
-                <div className="col-3 bg-light">
+            <Row className='d-flex blocked_user m-2 mb-3'>
+                <div className="col-3 bg-light p-2">
                     <div className="avt">
                     </div>      
                 </div>

@@ -21,15 +21,19 @@ const Follows = () => {
                     {/* Followes */}
                     <div class='col-6 text-start ms-2'>
                         <h3>Follower: 30</h3>
-                        <FollowUser actionType='Unblock'/>
-                        <FollowUser actionType='Unblock'/>
-                        <FollowUser actionType='Unblock'/>
-                        <FollowUser actionType='Unblock'/>
+                        <FollowUser actionType='Blocked'/>
+                        <FollowUser actionType='Blocked'/>
+                        <FollowUser actionType='Blocked'/>
+                        <FollowUser actionType='Blocked'/>
                     </div>
 
                     {/* Followings */}
                     <div class='col-6 text-start ms-2'>
                         <h3>Following: 50</h3>
+                        <FollowUser actionType='Unfollow'/>
+                        <FollowUser actionType='Unfollow'/>
+                        <FollowUser actionType='Unfollow'/>
+                        <FollowUser actionType='Unfollow'/>
                     </div>
                 </div>
                 

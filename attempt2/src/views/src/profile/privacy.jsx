@@ -53,11 +53,25 @@ const Privacy = () => {
                     <h4 className='mx-2'>Blocked user:  {totalBlockedUser}</h4>
                     {/* render a list */}
                     <Row className='d-flex flex-wrap '>
-                        <BlockedUser actionType='Unblock' className='col-3' />
-                        <BlockedUser actionType='Unblock' className='col-3' />
-                        <BlockedUser actionType='Unblock' className='col-3' />
-                        <BlockedUser actionType='Unblock' className='col-3' />
-                        <BlockedUser actionType='Unblock' className='col-3' />
+                        <div className='col-6'>
+                            <BlockedUser actionType='Unblock'/>
+                        </div>
+                        <div className='col-6'>
+                            <BlockedUser actionType='Unblock'/>
+                        </div>
+                        <div className='col-6'>
+                            <BlockedUser actionType='Unblock'/>
+                        </div>
+                        <div className='col-6'>
+                            <BlockedUser actionType='Unblock'/>
+                        </div>
+                        <div className='col-6'>
+                            <BlockedUser actionType='Unblock'/>
+                        </div>
+                        <div className='col-6'>
+                            <BlockedUser actionType='Unblock'/>
+                        </div>
+                        
                     </Row>
                     
                 </div>
