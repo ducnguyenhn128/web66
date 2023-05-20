@@ -29,7 +29,7 @@ function App() {
       element:  <LogIn/> 
     },
     {
-      path: 'profile',
+      path: 'profile/*',
       element: <Profile/> ,
       children: [
         {path: 'posts', element: <Posts/>},

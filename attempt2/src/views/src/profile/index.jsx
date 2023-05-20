@@ -9,19 +9,22 @@ import Posts from './posts';
 import ProfileStas from './profile';
 import Header from '../header';
 import Follows from './follows';
-import useAuthentication from '../hooks/useAuthen';
+import { useEffect } from 'react';
+import axios from 'axios';
+import { useCookies } from "react-cookie";
+
 const Profile = () => {
-    const { loggedIn, login, logout } = useAuthentication();
-    const handleLogin = () => {
-        login('username', 'password');
-      };
-    
-      const handleLogout = () => {
-        logout();
-      }
+    useEffect(() => {
+        // const response = axios.get(URL);
+
+        console.log(`All cookie: ${cookies}`);
+    }, [])
+
+    const [cookies, setCookie] = useCookies();
+    const URL = 'http://localhost:8000/api/profile';
+
+
     return (
-        <div>
-            {loggedIn ? (
                 <ProSidebarProvider>
                     <Header />
                     <Sidebar style={{float: 'left', width: '20%'}}>
@@ -41,7 +44,7 @@ const Profile = () => {
                     </Sidebar>
                         <main>
                             <Routes>
-                                <Route path='/' element={ <ProfileStas />} /> 
+                                <Route path='/*' element={ <ProfileStas />} /> 
                                 <Route path='/passwords' element={ <Password />} />
                                 <Route path='/privacy' element={ <Privacy />} />
                                 <Route path='/follows' element={ <Follows/>} />
@@ -50,15 +53,7 @@ const Profile = () => {
                             </Routes>
                         </main>       
                 </ProSidebarProvider>
-            ) : (
-                <button>Log In </button>
-            )
-        
-            }
 
-        </div>
-
-        
     );
 }
  

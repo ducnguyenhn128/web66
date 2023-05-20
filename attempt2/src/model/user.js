@@ -143,6 +143,17 @@ const userCRUD = {
     },
 }
 
+async function userProfile(req, res) {
+    const id = req.params.id;
+    try {
+        const foundUser = await userModel.findById(req.params.id);
+        // res.status(200).json(foundUser)
+        res.status(200).json({message: 'Found user'})
+    } catch (err) {
+        res.status(404).send('User not found')
+    }
+    
 
+}
 // Export object
-module.exports = userCRUD
+module.exports = {userCRUD, userProfile }
