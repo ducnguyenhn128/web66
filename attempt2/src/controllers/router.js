@@ -5,9 +5,9 @@ const morgan = require('morgan')
 morgan('short');
 const authentication = require('./middleware')
 const cookieParser = require('cookie-parser')
-
-
 router.use(cookieParser())
+
+router.get('/profile', authentication, userProfile)
 
 // User Login
 router.post('/login', userCRUD.login)
@@ -25,6 +25,8 @@ router.get('/:id', userCRUD.getById)
 router.post('/', userCRUD.post)
 router.put('/:id', userCRUD.put)
 router.delete('/:id', userCRUD.delete)
-router.get('/profile/:id', userProfile)
+
+
+
 
 module.exports = router

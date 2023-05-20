@@ -9,21 +9,36 @@ import Posts from './posts';
 import ProfileStas from './profile';
 import Header from '../header';
 import Follows from './follows';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useCookies } from "react-cookie";
 
 const Profile = () => {
     useEffect(() => {
-        // const response = axios.get(URL);
+            const fetchData = async () => {
+                try {
+                    const response = await axios.get(URL, {
+                        withCredentials: true,
+                      },
+                );
+                    const user = response.data;
+                    console.log("Data Response: ", user)
+                    setUser(user)
 
-        console.log(`All cookie: ${cookies}`);
+                } catch(err) {
+                    console.error(err)
+                }
+            }
+        fetchData();
     }, [])
 
-    const [cookies, setCookie] = useCookies();
+    const [user, setUser] = useState()
     const URL = 'http://localhost:8000/api/profile';
 
+    const fullName = user.info.fullname;
+    const email = user.email;
+    console.log(email);
 
+    // console.log(user["email"])
     return (
                 <ProSidebarProvider>
                     <Header />
@@ -32,7 +47,7 @@ const Profile = () => {
                             <div style={{width: '100px', height: '100px', backgroundColor: '#6a6b', borderRadius: '100%', margin: '20px auto'}}>
 
                             </div>
-                            <h3>Bùi Phương Linh</h3>
+                            <h3>{fullName}</h3>
                             <MenuItem component={<Link to='./'/>}> Profile </MenuItem>
                             <MenuItem component={<Link to='./posts'/>}> Posts </MenuItem>
                             <MenuItem component={<Link to='./follows'/>}> Follows </MenuItem>
