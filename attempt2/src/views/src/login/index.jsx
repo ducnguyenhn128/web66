@@ -38,7 +38,7 @@ const LogIn = () => {
         .then(data => {
             // Handle the response data
             console.log(data);
-            // navigate('/')
+            navigate('/profile')
         })
         .catch(error => {
             // Handle any errors

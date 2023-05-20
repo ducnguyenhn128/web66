@@ -5,7 +5,8 @@ const PORT = process.env.PORT || 8000;
 const bodyParser = require('body-parser');
 const app = express();
 const cors = require('cors');
-const cookieParser = require('cookie-parser')
+// const cookieParser = require('cookie-parser')
+const authentication = require('./src/controllers/middleware')
 
 // For handlebars
 const path = require('path');
@@ -22,7 +23,6 @@ app.use(cors({
 // Body parser
 app.use(bodyParser.json())
 
-// Cookie
 
 // HandleBars Template Engine
 app.engine('hbs', engine({
@@ -32,20 +32,12 @@ app.set('view engine', 'hbs')
 app.set('views', path.join(__dirname, '/src/views'))
 
 // API End Point
-app.get('/message', (req, res) => {
-    res.json({ message: "Hello from server!" });
-})
-// app.get('/', (req, res) => {
-//     res.render('home')
-// })
 
-app.get('/news', (req, res) => {
-    res.send('news')
+app.get('/', (req, res) => {
+    res.render('home')
 })
 
-app.get('/a1', (req, res) => {
-    res.send('ok')
-})
+
 
 app.use('/api', router)
 

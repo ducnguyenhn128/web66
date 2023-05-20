@@ -10,7 +10,8 @@ const authentication = (req, res, next) => {
         req.user = decoded;
         next();
     } catch(err) {
-        res.status(403).send('Invalid Token')
+        res.redirect('http://localhost:3000');
+        // res.status(403).send('Invalid Token')
     }
 }
 

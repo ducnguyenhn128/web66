@@ -18,16 +18,17 @@ const Profile = () => {
             try {
                 const response = await axios.get(URL, {
                     withCredentials: true,
-                    },
+                },
             );
-                const user = response.data;
-                console.log("Data Response: ", user);
-                // set State for user, Total Posts
-                setUser(user)
-                setTotalPosts(user.stats.posts)
-                setTotalFriends(user.stats.friends)
-                setTotalFollowers(user.stats.follower)
-                setTotalFollowings(user.stats.following)
+            const user = response.data;
+            // console.log("Data Response: ", user);
+
+            // set State for user & stats
+            setUser(user)
+            setTotalPosts(user.stats.posts)
+            setTotalFriends(user.stats.friends)
+            setTotalFollowers(user.stats.follower)
+            setTotalFollowings(user.stats.following)
                 
             } catch(err) {
                 console.error(err)
@@ -52,42 +53,41 @@ const Profile = () => {
 
 
     return (
-                <ProSidebarProvider totalpost = {totalPosts}>
-                    <Header />
-                    <Sidebar style={{float: 'left', width: '20%'}}>
-                        <Menu>
-                            <div style={{width: '100px', height: '100px', backgroundColor: '#6a6b', borderRadius: '100%', margin: '20px auto'}}>
+        <ProSidebarProvider totalpost = {totalPosts}>
+            <Header />
+            <Sidebar style={{float: 'left', width: '20%'}}>
+                <Menu>
+                    <div style={{width: '100px', height: '100px', backgroundColor: '#6a6b', borderRadius: '100%', margin: '20px auto'}}>
 
-                            </div>
-                            <h3>{fullName}</h3>
-                            <MenuItem component={<Link to='./'/>}> Profile </MenuItem>
-                            <MenuItem component={<Link to='./posts'/>}> Posts </MenuItem>
-                            <MenuItem component={<Link to='./follows'/>}> Follows </MenuItem>
-                            <MenuItem component={<Link to='./passwords'/>}> Password </MenuItem>
-                            <MenuItem component={<Link to='./privacy'/>}> Privacy </MenuItem>
-                            <MenuItem component={<Link to='./myinfo'/>}> My Info </MenuItem>
-                            
-                        </Menu>
-                    </Sidebar>
-                        <main>
-                            {/* <p>{totalPosts}</p> */}
-                            <Routes>
-                                <Route path='/*' element={ 
-                                    <ProfileStas 
-                                        totalPosts={totalPosts}
-                                        totalFriends={totalFriends}
-                                        totalFollowers={totalFollowers}
-                                        totalFollowings={totalFollowings}
-                                    />
-                                }/> 
-                                <Route path='/passwords' element={ <Password />} />
-                                <Route path='/privacy' element={ <Privacy />} />
-                                <Route path='/follows' element={ <Follows/>} />
-                                <Route path='/myinfo' element={ <MyInfo />} />
-                                <Route path='/posts' element={ <Posts />} />
-                            </Routes>
-                        </main>       
-                </ProSidebarProvider>
+                    </div>
+                    <h3>{fullName}</h3>
+                    <MenuItem component={<Link to='./'/>}> Profile </MenuItem>
+                    <MenuItem component={<Link to='./posts'/>}> Posts </MenuItem>
+                    <MenuItem component={<Link to='./follows'/>}> Follows </MenuItem>
+                    <MenuItem component={<Link to='./passwords'/>}> Password </MenuItem>
+                    <MenuItem component={<Link to='./privacy'/>}> Privacy </MenuItem>
+                    <MenuItem component={<Link to='./myinfo'/>}> My Info </MenuItem>
+                    
+                </Menu>
+            </Sidebar>
+            <main>
+                <Routes>
+                    <Route path='/*' element={ 
+                        <ProfileStas 
+                            totalPosts={totalPosts}
+                            totalFriends={totalFriends}
+                            totalFollowers={totalFollowers}
+                            totalFollowings={totalFollowings}
+                        />
+                    }/> 
+                    <Route path='/passwords' element={ <Password />} />
+                    <Route path='/privacy' element={ <Privacy />} />
+                    <Route path='/follows' element={ <Follows/>} />
+                    <Route path='/myinfo' element={ <MyInfo />} />
+                    <Route path='/posts' element={ <Posts />} />
+                </Routes>
+            </main>       
+        </ProSidebarProvider>
 
     );
 }
