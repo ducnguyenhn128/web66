@@ -5,7 +5,7 @@ const PORT = process.env.PORT || 8000;
 const bodyParser = require('body-parser');
 const app = express();
 const cors = require('cors');
-
+const cookieParser = require('cookie-parser')
 
 // For handlebars
 const path = require('path');
@@ -13,11 +13,16 @@ const {engine} = require('express-handlebars')
 
 // CORS
 app.use(cors({
-    origin: 'http://localhost:3000'
+    origin: 'http://localhost:3000',
+    methods: ['GET', 'POST'], // Allowed methods
+    allowedHeaders: ['Content-Type', 'Authorization'], // Allowed headers
+    credentials: true, // Allow credentials (e.g., cookies)
   }));
   
 // Body parser
 app.use(bodyParser.json())
+
+// Cookie
 
 // HandleBars Template Engine
 app.engine('hbs', engine({

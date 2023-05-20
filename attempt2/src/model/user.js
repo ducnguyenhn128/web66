@@ -3,6 +3,8 @@ const bcrypt = require('bcrypt');
 const secretkey = 'ab240f90aba431402985eddc45f4d413a33ebc925575c558168a98b2c38033a6';
 const jwt = require('jsonwebtoken')
 const userProtype = require('./data');
+const cookieParser = require('cookie-parser')
+
 // Connect to MongoDB
 const URL = 'mongodb+srv://ducnguyendautunhanha:gvAXtNESbIlZqOjb@cluster0.nkverec.mongodb.net/?retryWrites=true&w=majority'
 mongoose.connect(URL)
@@ -106,10 +108,11 @@ const userCRUD = {
     },
     // 6. Login
     login : async function(req, res) {
-        const {username, password} = req.body;
-        if (!username || !password) {
+        
+        if (!req.body.username || !req.body.password) {
             res.send('Please fill both username and password')
         }
+        const {username, password} = req.body;
         // Find user in DB
         let user = await userModel.findOne({username: username});
         // 1. user not found
@@ -118,7 +121,6 @@ const userCRUD = {
         }
         // 2. foundUser, compare password
         const matchedPassword = bcrypt.compare(password, user.password);
-        console.log(matchedPassword)
         if (matchedPassword) {
             // jwt token
             const payload = {
@@ -131,8 +133,8 @@ const userCRUD = {
             res.cookie('jwtToken', token, {
                 httpOnly: true,
                 secure: true,
-                // Other cookie options if needed
             });
+            // res.cookie('sites1', 'duc1111');
             res.status(200).json({token})
         } else {
             res.status(401).send('Wrong password')
