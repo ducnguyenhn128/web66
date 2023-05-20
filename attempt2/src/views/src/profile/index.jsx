@@ -14,33 +14,45 @@ import axios from 'axios';
 
 const Profile = () => {
     useEffect(() => {
-            const fetchData = async () => {
-                try {
-                    const response = await axios.get(URL, {
-                        withCredentials: true,
-                      },
-                );
-                    const user = response.data;
-                    console.log("Data Response: ", user)
-                    setUser(user)
-
-                } catch(err) {
-                    console.error(err)
-                }
+        const fetchData = async () => {
+            try {
+                const response = await axios.get(URL, {
+                    withCredentials: true,
+                    },
+            );
+                const user = response.data;
+                console.log("Data Response: ", user);
+                // set State for user, Total Posts
+                setUser(user)
+                setTotalPosts(user.stats.posts)
+                setTotalFriends(user.stats.friends)
+                setTotalFollowers(user.stats.follower)
+                setTotalFollowings(user.stats.following)
+                
+            } catch(err) {
+                console.error(err)
             }
+        }
         fetchData();
     }, [])
 
     const [user, setUser] = useState()
+    const [totalPosts, setTotalPosts] = useState(0);
+    const [totalFriends, setTotalFriends] = useState(0);
+    const [totalFollowings, setTotalFollowings] = useState(0);
+    const [totalFollowers, setTotalFollowers] = useState(0);
+
     const URL = 'http://localhost:8000/api/profile';
 
-    const fullName = user.info.fullname;
-    const email = user.email;
-    console.log(email);
 
-    // console.log(user["email"])
+    let fullName = "";
+    if (user && user.info && user.info.fullname) {
+        fullName = user.info.fullname
+    }
+
+
     return (
-                <ProSidebarProvider>
+                <ProSidebarProvider totalpost = {totalPosts}>
                     <Header />
                     <Sidebar style={{float: 'left', width: '20%'}}>
                         <Menu>
@@ -58,8 +70,16 @@ const Profile = () => {
                         </Menu>
                     </Sidebar>
                         <main>
+                            {/* <p>{totalPosts}</p> */}
                             <Routes>
-                                <Route path='/*' element={ <ProfileStas />} /> 
+                                <Route path='/*' element={ 
+                                    <ProfileStas 
+                                        totalPosts={totalPosts}
+                                        totalFriends={totalFriends}
+                                        totalFollowers={totalFollowers}
+                                        totalFollowings={totalFollowings}
+                                    />
+                                }/> 
                                 <Route path='/passwords' element={ <Password />} />
                                 <Route path='/privacy' element={ <Privacy />} />
                                 <Route path='/follows' element={ <Follows/>} />

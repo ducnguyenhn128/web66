@@ -1,7 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const ProfileStas = () => {
+const ProfileStas = (props) => {
+    
+    const {totalPosts, totalFriends, totalFollowers,totalFollowings } = props
     return (  
         <div className="d-flex">
 
@@ -9,20 +11,20 @@ const ProfileStas = () => {
                 {/* Statistic */}
                 <div className="d-flex d-flex justify-content-between mt-3">  
                     <div className="profile-stats col-2 bg-secondary mx-2">
-                        <h3>10</h3>
+                        <h3>{totalPosts}</h3>
                         <div>Posts</div>
                     </div>
                     <div className="profile-stats col-2 bg-secondary mx-2">
-                         <h3>10</h3>
-                         <div>Likes</div>
+                         <h3>{totalFriends}</h3>
+                         <div>Friends</div>
                      </div>
                      <div className="profile-stats col-2 bg-secondary mx-2 ">
-                         <h3>10</h3>
-                         <div>Comments</div>
+                         <h3>{totalFollowers}</h3>
+                         <div>Followers</div>
                      </div>
                      <div className="profile-stats col-2 bg-secondary mx-2">
-                         <h3>10</h3>
-                         <div>Followes</div>
+                         <h3>{totalFollowings}</h3>
+                         <div>Followings</div>
                      </div>
                     
                  </div>
