@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const Homepage = () => {
-    const [logInStatus, setLogInState] = useState(false);
+    // const [logInStatus, setLogInState] = useState(false);
     const URL = 'http://localhost:8000/api/check-login'
     // First, check log in status
     const navigate = useNavigate();
@@ -21,11 +21,10 @@ const Homepage = () => {
     
                 console.log(response.data)
                 if (response.data === 'Invalid Token') {
-                    setLogInState(false);
                     console.log('Not Login');
                     navigate('/login')
                 } else {
-                    setLogInState(true);
+                    // setLogInState(true);
                     console.log('Log In')
                 }
             } catch(err) {
