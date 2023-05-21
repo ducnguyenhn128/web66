@@ -9,9 +9,13 @@ import Follows from '../profile/follows';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Button } from 'react-bootstrap';
+import { useParams } from 'react-router-dom';
 
 const User = () => {
-    const URL = 'http://localhost:8000/user/:id';
+    const {id} = useParams();  //get the ID of the URL
+    const URL = 'http://localhost:8000/user/' + id ;
+    // console.log(URL)
+    // console.log(`id is ${id}`);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -21,21 +25,22 @@ const User = () => {
                 },
             );
             const user = response.data;
-            // console.log("Data Response: ", user);
+            console.log("Data Response: ", user);
 
             // set State for user & stats
             setUser(user)
-            // setTotalPosts(user.stats.posts)
-            // setTotalFriends(user.stats.friends)
-            // setTotalFollowers(user.stats.follower)
-            // setTotalFollowings(user.stats.following)
+            setTotalPosts(user.stats.posts)
+            setTotalFriends(user.stats.friends)
+            setTotalFollowers(user.stats.follower)
+            setTotalFollowings(user.stats.following)
                 
             } catch(err) {
                 console.error(err)
             }
         }
         fetchData();
-    }, [])
+    }, [URL])
+
 
     const [user, setUser] = useState()
     const [totalPosts, setTotalPosts] = useState(0);
@@ -76,7 +81,6 @@ const User = () => {
                 </Menu>
             </Sidebar>
             <main>
-                <p>Tesst other user</p>
                 <Routes>
                     <Route path='/*' element={ 
                         <ProfileStas 

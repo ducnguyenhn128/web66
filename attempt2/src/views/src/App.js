@@ -13,7 +13,7 @@ import Header from "./header";
 import MyInfo from "./profile/myinfo";
 import ViewPost from "./posts";
 import LogIn from "./login";
-import User from "./user";
+import User from "./user/user";
 
 function App() {
   const router = createBrowserRouter([
@@ -45,7 +45,7 @@ function App() {
       element: <ViewPost />
     },
     {
-      path: 'user/*',
+      path: 'user/:id/*',
       element: <User />
     }
   ]);
