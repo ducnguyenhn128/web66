@@ -13,19 +13,24 @@ const Homepage = () => {
     const navigate = useNavigate();
     useEffect(() => {
         
-        const checkLoginStatus = async () => {
-            const response = await axios.get('http://localhost:8000/api/check-login', {
-                withCredentials: true // with cookie
-            });
-
-            console.log(response.data)
-            if (response.data === 'Invalid Token') {
-                setLogInState(false);
-                console.log('Not Login');
+        const checkLoginStatus = async () => { 
+            try {
+                const response = await axios.get('http://localhost:8000/api/check-login', {
+                    withCredentials: true // with cookie
+                });
+    
+                console.log(response.data)
+                if (response.data === 'Invalid Token') {
+                    setLogInState(false);
+                    console.log('Not Login');
+                    navigate('/login')
+                } else {
+                    setLogInState(true);
+                    console.log('Log In')
+                }
+            } catch(err) {
+                console.log(err);
                 navigate('/login')
-            } else {
-                setLogInState(true);
-                console.log('Log In')
             }
 
         }
@@ -34,7 +39,6 @@ const Homepage = () => {
 
     
     return (
-
         <div>
             <Header />
             <div className="mt-1 d-flex justify-content-between bg-light">

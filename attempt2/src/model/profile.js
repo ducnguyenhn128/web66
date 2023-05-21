@@ -78,6 +78,7 @@ const profileCRUD = {
     // 2. Follow an user
     followAnUser: async function (req, res) {
         try {
+            console.log('Receive follow request')
             //find user with the id in the request URL
             const userID = req.params.id
             const foundUser = await userModel.findById(req.params.id);
@@ -118,7 +119,7 @@ const profileCRUD = {
     // 3. Unfollow an user
     unfollow: async function (req, res) {
         try {
-            console.log('receive')
+            console.log('Receive unfollow request')
             //find user with the id in the request URL
             const userID = req.params.id
             const foundUser = await userModel.findById(req.params.id);

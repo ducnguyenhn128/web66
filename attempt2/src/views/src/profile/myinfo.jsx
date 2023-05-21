@@ -17,13 +17,13 @@ const MyInfo = () => {
                     <div style={{backgroundColor: '#c9ebea', height: '250px'}} className='mx-auto col-12'>
 
                     </div>
-                    <button>Change Cover photo</button>
+                    <Button variant='secondary' className='mt-2'>Change Cover photo</Button>
                     {/* Profile picture */}
                     <div className='d-flex'>
                         <div className='mx-3'>
-                            <div className='profile-myInfo-avt mb-2'>
+                            <div className='profile-myInfo-avt mb-3'>
                             </div>
-                            <button>Change Profile picture</button>
+                            <Button variant='success'>Change Avatar</Button>
 
                         </div>
                         

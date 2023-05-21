@@ -3,7 +3,7 @@ const {userCRUD, userProfile } = require('../model/user')
 const router = express.Router();
 const morgan = require('morgan')
 morgan('short');
-const {authentication} = require('./middleware')
+const authentication = require('./middleware')
 const cookieParser = require('cookie-parser')
 router.use(cookieParser())
 
@@ -13,14 +13,14 @@ router.post('/', userCRUD.post)
 
 // User Login
 router.post('/login', userCRUD.login)
-
+// User Logout
 router.post('/logout', (req, res) => {
 
     res.clearCookie('jwtToken', {
         httpOnly: true,
         secure: true
       });
-    res.sendStatus(200);
+    res.status(200).send('Logout done');
 })
 
 // testing api check login

@@ -10,11 +10,11 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Button } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
-
+import { useNavigate } from 'react-router-dom';
 const User = () => {
     const {id} = useParams();  //get the ID of the URL
     const URL = 'http://localhost:8000/user/' + id ;
-    
+    const navigate = useNavigate()
     // Follow Status
     const [followStatus, setFollowStatus] = useState(true)
 
@@ -38,11 +38,12 @@ const User = () => {
             setTotalFollowings(user.stats.following)
                 
             } catch(err) {
-                console.error(err)
+                console.error(err);
+                navigate('/login')
             }
         }
         fetchData();
-    }, [URL, followStatus])
+    }, [URL, followStatus, navigate])
 
 
     const [user, setUser] = useState()

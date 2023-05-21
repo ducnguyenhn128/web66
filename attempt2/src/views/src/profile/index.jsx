@@ -11,8 +11,9 @@ import Header from '../header';
 import Follows from './follows';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-
+import { useNavigate } from 'react-router-dom';
 const Profile = () => {
+    const navigate = useNavigate()
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -21,7 +22,7 @@ const Profile = () => {
                 },
             );
             const user = response.data;
-            // console.log("Data Response: ", user);
+            console.log("Data Response: ", user);
 
             // set State for user & stats
             setUser(user)
@@ -31,11 +32,12 @@ const Profile = () => {
             setTotalFollowings(user.stats.following)
                 
             } catch(err) {
-                console.error(err)
+                console.error(err);
+                navigate('/login')
             }
         }
         fetchData();
-    }, [])
+    }, [navigate])
 
     const [user, setUser] = useState()
     const [totalPosts, setTotalPosts] = useState(0);
@@ -47,6 +49,10 @@ const Profile = () => {
 
 
     let fullName = "";
+    if (user && user.username) {
+        // if people has not set full name, display their username
+        fullName = user.username;
+    }
     if (user && user.info && user.info.fullname) {
         fullName = user.info.fullname
     }

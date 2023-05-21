@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 const LogIn = () => {
     const navigate = useNavigate();
     const [newUser, setNewUser] = useState({})
+    const [error, setError] = useState('');
     const handleChange = ({target}) => {
         const {name, value} = target;
         setNewUser(prev => ({
@@ -43,13 +44,16 @@ const LogIn = () => {
         .catch(error => {
             // Handle any errors
             console.error(error);
+            setError('Username or password is incorrect.');
         });  
         }
     
     return (
         <div className='SignIn col-4 mx-auto mt-4'>
              <img src = {cover} alt='cover-logo' style={{width: '300px'}}/>
-            <h2 className="mb-3 mt-3">Sign In</h2>
+            <h2 className="mb-3 mt-3">Log In</h2>
+            {/* Username or password is incorrect. */}
+            {error && <p className='text-danger'>{error}</p>} 
             <Form className='col-9 mx-auto ' onSubmit={handleSubmit}>
 
                 <Form.Group className="mb-3">

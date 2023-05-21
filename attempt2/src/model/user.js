@@ -116,7 +116,8 @@ const userCRUD = {
         let user = await userModel.findOne({username: username});
         // 1. user not found
         if (!user) {
-            res.status(404).send()
+            res.status(404).send('User not found');
+            return;
         }
         // 2. foundUser, compare password
         const matchedPassword = bcrypt.compare(password, user.password);

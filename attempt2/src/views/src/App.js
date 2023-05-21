@@ -14,6 +14,7 @@ import MyInfo from "./profile/myinfo";
 import ViewPost from "./posts";
 import LogIn from "./login";
 import User from "./user/user";
+import Logout from "./login/logout";
 
 function App() {
   const router = createBrowserRouter([
@@ -27,10 +28,15 @@ function App() {
     },
     {
       path: '/login',
-      element:  <LogIn/> 
+      element:  <LogIn/> ,
+      exact: true // Add exact match to prevent redirect loop
     },
     {
-      path: 'profile/*',
+      path: '/logout',
+      element:  <Logout/>
+    },
+    {
+      path: 'profile/*',   //login required
       element: <Profile/> ,
       children: [
         {path: 'posts', element: <Posts/>},
@@ -45,7 +51,7 @@ function App() {
       element: <ViewPost />
     },
     {
-      path: 'user/:id/*',
+      path: 'user/:id/*',  //login required
       element: <User />
     }
   ]);

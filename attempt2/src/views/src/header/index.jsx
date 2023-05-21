@@ -12,23 +12,6 @@ import { useNavigate } from 'react-router-dom';
 
 
 const Header = () => {
-  const navigate = useNavigate();
-  const handleLogout = async () => {
-    try {
-      await axios.post('http://localhost:8000/api/logout', null, {
-        withCredentials: true,
-      });
-  
-      // Clear the token from client-side storage
-      localStorage.removeItem('token');
-  
-      // Redirect to the login page or perform other actions
-      // window.location.href = '/login';
-      navigate('/login')
-    } catch (error) {
-      console.error('Logout failed:', error);
-    }
-  };
 
   return (
     <div class='home-header p-0'>
@@ -53,7 +36,7 @@ const Header = () => {
               <a href='/' class='me-4 text-white fs-3'><NotificationsIcon /></a>
               <a href='/' class='me-4 text-white fs-3'><MessageIcon /></a>
               <a href='/profile' class='me-4 text-white fs-3'><PersonIcon /></a>
-              <a href='/' class='me-4 text-white fs-3' onClick={handleLogout}><LogoutIcon /></a>
+              <a href='/logout' class='me-4 text-white fs-3'><LogoutIcon /></a>
           </div>
       </div>
     </div>
