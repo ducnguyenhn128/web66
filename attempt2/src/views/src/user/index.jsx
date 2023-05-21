@@ -2,17 +2,17 @@ import { Link, Route, Routes} from 'react-router-dom';
 import { ProSidebarProvider } from 'react-pro-sidebar'
 import './styles.css'
 import { Sidebar, Menu, MenuItem} from 'react-pro-sidebar';
-import Password from './password';
-import Privacy from './privacy';
-import MyInfo from './myinfo';
-import Posts from './posts';
-import ProfileStas from './profile';
+import Posts from '../profile/posts';
+import ProfileStas from '../profile/profile';
 import Header from '../header';
-import Follows from './follows';
+import Follows from '../profile/follows';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Button } from 'react-bootstrap';
 
-const Profile = () => {
+const User = () => {
+    const URL = 'http://localhost:8000/user/:id';
+
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -25,10 +25,10 @@ const Profile = () => {
 
             // set State for user & stats
             setUser(user)
-            setTotalPosts(user.stats.posts)
-            setTotalFriends(user.stats.friends)
-            setTotalFollowers(user.stats.follower)
-            setTotalFollowings(user.stats.following)
+            // setTotalPosts(user.stats.posts)
+            // setTotalFriends(user.stats.friends)
+            // setTotalFollowers(user.stats.follower)
+            // setTotalFollowings(user.stats.following)
                 
             } catch(err) {
                 console.error(err)
@@ -43,7 +43,10 @@ const Profile = () => {
     const [totalFollowings, setTotalFollowings] = useState(0);
     const [totalFollowers, setTotalFollowers] = useState(0);
 
-    const URL = 'http://localhost:8000/api/profile';
+    // Follow Status
+    const [followStatus, setFollowStatus] = useState(false)
+
+    
 
 
     let fullName = "";
@@ -63,14 +66,17 @@ const Profile = () => {
                     <h3>{fullName}</h3>
                     <MenuItem component={<Link to='./'/>}> Profile </MenuItem>
                     <MenuItem component={<Link to='./posts'/>}> Posts </MenuItem>
-                    <MenuItem component={<Link to='./follows'/>}> Follows </MenuItem>
-                    <MenuItem component={<Link to='./passwords'/>}> Password </MenuItem>
-                    <MenuItem component={<Link to='./privacy'/>}> Privacy </MenuItem>
-                    <MenuItem component={<Link to='./myinfo'/>}> My Info </MenuItem>
+                    <MenuItem>
+                        {/* Check follow status */}
+                        <Button>Follow</Button>                    
+                    </MenuItem>
+
+
                     
                 </Menu>
             </Sidebar>
             <main>
+                <p>Tesst other user</p>
                 <Routes>
                     <Route path='/*' element={ 
                         <ProfileStas 
@@ -80,10 +86,7 @@ const Profile = () => {
                             totalFollowings={totalFollowings}
                         />
                     }/> 
-                    <Route path='/passwords' element={ <Password />} />
-                    <Route path='/privacy' element={ <Privacy />} />
                     <Route path='/follows' element={ <Follows/>} />
-                    <Route path='/myinfo' element={ <MyInfo />} />
                     <Route path='/posts' element={ < Posts totalPosts={totalPosts}/>} />
                 </Routes>
             </main>       
@@ -92,4 +95,4 @@ const Profile = () => {
     );
 }
  
-export default Profile;
+export default User;

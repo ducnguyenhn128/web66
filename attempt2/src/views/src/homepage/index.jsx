@@ -2,9 +2,39 @@ import Button from "react-bootstrap/esm/Button";
 import ViewPost from "../posts";
 import MessageFriend from "./messageFriends";
 import Header from "../header";
+import {useEffect, useState} from 'react'
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Homepage = () => {
+    const [logInStatus, setLogInState] = useState(false);
+    const URL = 'http://localhost:8000/api/check-login'
+    // First, check log in status
+    const navigate = useNavigate();
+    useEffect(() => {
+        
+        const checkLoginStatus = async () => {
+            const response = await axios.get('http://localhost:8000/api/check-login', {
+                withCredentials: true // with cookie
+            });
+
+            console.log(response.data)
+            if (response.data === 'Invalid Token') {
+                setLogInState(false);
+                console.log('Not Login');
+                navigate('/login')
+            } else {
+                setLogInState(true);
+                console.log('Log In')
+            }
+
+        }
+        checkLoginStatus();
+    }, [navigate])
+
+    
     return (
+
         <div>
             <Header />
             <div className="mt-1 d-flex justify-content-between bg-light">

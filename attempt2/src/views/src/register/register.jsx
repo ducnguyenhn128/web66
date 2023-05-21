@@ -17,11 +17,9 @@ const Register = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
         if (newUser.password !== newUser.confirmPass) {
             alert('Password not match');
         }
-
         else {
             const {username, email, password} = newUser;
             const formData = {username, email, password};
@@ -51,7 +49,7 @@ const Register = () => {
 
     return (
         <div className='register col-6 mx-auto mt-4'>
-            <img src = {cover} alt='cover-logo' style={{width: '400px'}}/>
+            <img src = {cover} alt='cover-logo' style={{width: '300px'}}/>
             <h2 className="mb-3 mt-3">Register an account here</h2>
             <Form className='col-9 mx-auto' onSubmit={handleSubmit}>
                 <Form.Group className="mb-3">
@@ -90,6 +88,10 @@ const Register = () => {
                     Submit
                 </Button>
             </Form>
+
+            <div className='mt-3'>
+                <a href='/login' >Already has account, login here</a>
+            </div>
         </div>
     );
 }

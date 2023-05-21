@@ -52,7 +52,7 @@ const Header = () => {
               <a href='/' class='me-4 text-white fs-3' ><MenuIcon /></a>
               <a href='/' class='me-4 text-white fs-3'><NotificationsIcon /></a>
               <a href='/' class='me-4 text-white fs-3'><MessageIcon /></a>
-              <a href='/' class='me-4 text-white fs-3'><PersonIcon /></a>
+              <a href='/profile' class='me-4 text-white fs-3'><PersonIcon /></a>
               <a href='/' class='me-4 text-white fs-3' onClick={handleLogout}><LogoutIcon /></a>
           </div>
       </div>

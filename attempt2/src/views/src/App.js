@@ -13,6 +13,7 @@ import Header from "./header";
 import MyInfo from "./profile/myinfo";
 import ViewPost from "./posts";
 import LogIn from "./login";
+import User from "./user";
 
 function App() {
   const router = createBrowserRouter([
@@ -44,8 +45,8 @@ function App() {
       element: <ViewPost />
     },
     {
-      path: 'profile/password1222',
-      element: <Password />
+      path: 'user/*',
+      element: <User />
     }
   ]);
 

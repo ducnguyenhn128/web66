@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import Form from 'react-bootstrap/Form';
 import { useNavigate } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
-import cover from '../photo/facebook_cover_photo_1.png'
+import cover from '../photo/logoheader.jpg'
 import { Link } from 'react-router-dom';
 
 // import './styles.css'
@@ -48,7 +48,7 @@ const LogIn = () => {
     
     return (
         <div className='SignIn col-4 mx-auto mt-4'>
-             <img src = {cover} alt='cover-logo' style={{width: '400px'}}/>
+             <img src = {cover} alt='cover-logo' style={{width: '300px'}}/>
             <h2 className="mb-3 mt-3">Sign In</h2>
             <Form className='col-9 mx-auto ' onSubmit={handleSubmit}>
 

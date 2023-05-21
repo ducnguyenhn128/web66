@@ -10,7 +10,8 @@ const authentication = require('./src/controllers/middleware')
 
 // For handlebars
 const path = require('path');
-const {engine} = require('express-handlebars')
+const {engine} = require('express-handlebars');
+const profileRouter = require('./src/controllers/profileRouter');
 
 // CORS
 app.use(cors({
@@ -40,6 +41,7 @@ app.get('/', (req, res) => {
 
 
 app.use('/api', router)
+app.use('/user', profileRouter)
 
 app.listen(PORT, () => {
     console.log(`Server is listening at ${PORT}`);

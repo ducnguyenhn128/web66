@@ -7,6 +7,10 @@ const authentication = require('./middleware')
 const cookieParser = require('cookie-parser')
 router.use(cookieParser())
 
+// Regiter an user
+router.post('/', userCRUD.post)
+
+
 // User Login
 router.post('/login', userCRUD.login)
 
@@ -20,8 +24,14 @@ router.post('/logout', (req, res) => {
 })
 
 // testing api check login
-router.get('/checklogin', authentication, (req, res) => {
-    res.status(200).send(req.user)
+router.get('/check-login', authentication, (req, res) => {
+    if (req.user) {
+        // User is logged in
+        res.status(200).json({ isLoggedIn: true });
+      } else {
+        // User is not logged in
+        res.status(200).json({ isLoggedIn: false });
+      }
 })
 
 router.get('/profile', authentication, userProfile)
@@ -30,7 +40,6 @@ router.get('/profile', authentication, userProfile)
 router.use(authentication)
 router.get('/all', userCRUD.get)
 router.get('/:id', userCRUD.getById)
-router.post('/', userCRUD.post)
 router.put('/:id', userCRUD.put)
 router.delete('/:id', userCRUD.delete)
 

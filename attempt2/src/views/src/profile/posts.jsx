@@ -3,7 +3,9 @@ import Form from 'react-bootstrap/Form';
 
 import './styles.css'
 
-const Posts = () => {
+const Posts = (props) => {
+    const totalPosts = props.totalPosts
+    
     return (
         <div className="d-flex">
 
@@ -17,7 +19,7 @@ const Posts = () => {
                 <div className='mt-4'>
                     {/* Recent Post line */}
                     <div className='d-flex justify-content-between mx-2'>
-                        <h4>Total Post: 120</h4>    
+                        <h4>Total Post: {totalPosts}</h4>    
                         
                     </div>
                     <div className="bg-white text-start mx-2">

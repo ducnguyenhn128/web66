@@ -10,8 +10,10 @@ const authentication = (req, res, next) => {
         req.user = decoded;
         next();
     } catch(err) {
-        res.redirect('http://localhost:3000');
-        // res.status(403).send('Invalid Token')
+        // res.redirect('http://localhost:3000');
+        res.status(200).send('Invalid Token');
+        // res.status(403).json({ isLoggedIn: false });
+        console.log(err);
     }
 }
 
