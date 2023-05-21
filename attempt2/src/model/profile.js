@@ -44,6 +44,9 @@ const userModel = db.model('users', userSchema)
 // 2. Follow an user /user/:id/follow
 // 3. Unfollow an user /user/:id/unfollow
 
+const profileMiddleware = (req, res, next) => {
+
+}
 
 const profileCRUD = {
     // 1. Get a profile: /user/:id
@@ -78,6 +81,10 @@ const profileCRUD = {
             //find user with the id in the request URL
             const userID = req.params.id
             const foundUser = await userModel.findById(req.params.id);
+            // userID not found
+            if (!foundUser) {
+                res.status(400).send()
+            }
             // check follow Status between client vs user(id)
             const clientID = req.user.userID;
             const client = await userModel.findById(clientID);
@@ -89,8 +96,6 @@ const profileCRUD = {
                 res.status(400).send()
             }
             // Handle client following user
-            clientFollowings.push(userID); // update
-
             await userModel.findByIdAndUpdate(
                 clientID,
                 { $push: {'follow.following' : userID}} ,
@@ -104,16 +109,52 @@ const profileCRUD = {
                 {new: true}
             )
 
-            const updateClient = {...client, }
             res.status(201).send();
 
         } catch (err) {
             res.status(404).send('User not found')
         }
-    }
-
-
+    },
     // 3. Unfollow an user
+    unfollow: async function (req, res) {
+        try {
+            console.log('receive')
+            //find user with the id in the request URL
+            const userID = req.params.id
+            const foundUser = await userModel.findById(req.params.id);
+            // userID not found
+            if (!foundUser) {
+                res.status(400).send()
+            }
+            // check follow Status between client vs user(id)
+            const clientID = req.user.userID;
+            const client = await userModel.findById(clientID);
+            // The array include all id that client follow
+            const clientFollowings = client.follow.following || []
+            // If client has not followed user yet
+            if (clientFollowings.includes(userID) === false) {
+                res.status(400).send()
+            }
+            // Handle client unfollow user
+            await userModel.findByIdAndUpdate(
+                clientID,
+                { $pull: {'follow.following' : userID}} ,
+                {new: true}
+            )
+            
+            // Handle user lose a follower
+            await userModel.findByIdAndUpdate(
+                userID,
+                { $pull: {'follow.follower' : clientID}} ,
+                {new: true}
+            )
+
+            res.status(204).send();
+
+        } catch (err) {
+            res.status(404).send('User not found')
+        }
+    }
 }
 
 module.exports = profileCRUD;

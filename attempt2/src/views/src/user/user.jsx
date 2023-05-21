@@ -59,7 +59,6 @@ const User = () => {
     
     // Handle Follow button
     const handleFollow = async () => {
-        // setFollowStatus(followStatus => !followStatus);
         let url2 = 'http://localhost:8000/user/' + id + '/follow';
         console.log(url2)
         try { 
@@ -73,6 +72,28 @@ const User = () => {
         }
     }
 
+    const handleUnFollow = async() => {
+        let url2 = 'http://localhost:8000/user/' + id + '/follow';
+        try { 
+            const response = await axios.delete(url2, { withCredentials: true }) ;
+            if (response.status === 204) {
+                 setFollowStatus(followStatus => !followStatus)
+            }
+            
+         } catch(err) {
+             console.error(err);
+         }
+    }
+
+    const handleClick = () => {
+        // Client has not follow User, => handle client will follow user
+        if (followStatus === false) {
+            handleFollow();
+        } else { 
+            // Client has followed User => handle client unfollow user
+            handleUnFollow();
+        }
+    }
     return (
         <ProSidebarProvider totalpost = {totalPosts}>
             <Header />
@@ -85,7 +106,7 @@ const User = () => {
                     <MenuItem component={<Link to='./posts'/>}> Posts </MenuItem>
                     <MenuItem>
                         {/* Check follow status */}
-                        <Button onClick={handleFollow}>
+                        <Button onClick={handleClick}>
                             {followStatus === false ? 'Follow' : 'Unfollow'}
                         </Button>                    
                     </MenuItem>                

@@ -16,7 +16,7 @@ const profileRouter = require('./src/controllers/profileRouter');
 // CORS
 app.use(cors({
     origin: 'http://localhost:3000',
-    methods: ['GET', 'POST'], // Allowed methods
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed methods
     allowedHeaders: ['Content-Type', 'Authorization'], // Allowed headers
     credentials: true, // Allow credentials (e.g., cookies)
   }));

@@ -18,4 +18,6 @@ profileRouter.use(authentication)
 
 profileRouter.get('/:id', profileCRUD.getAnUser)
 profileRouter.post('/:id/follow', profileCRUD.followAnUser)
+profileRouter.delete('/:id/follow', profileCRUD.unfollow)
+
 module.exports = profileRouter;
