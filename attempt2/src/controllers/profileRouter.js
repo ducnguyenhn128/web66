@@ -9,8 +9,7 @@ const morgan = require('morgan')
 morgan('short');
 const authentication = require('./middleware');
 const profileCRUD = require('../model/profile')
-// const cookieParser = require('cookie-parser')
-// router.use(cookieParser())
+
 
 const profileRouter = express.Router();
 

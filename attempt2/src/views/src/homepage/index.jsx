@@ -1,5 +1,5 @@
 import Button from "react-bootstrap/esm/Button";
-import ViewPost from "../posts";
+import ViewPost from "../posts/viewpost";
 import MessageFriend from "./messageFriends";
 import Header from "../header";
 import {useEffect, useState} from 'react'

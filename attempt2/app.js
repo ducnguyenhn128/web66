@@ -1,17 +1,19 @@
-// require('dotenv').config();
+require('dotenv').config();
 const express = require('express');
-const router = require('./src/controllers/router')
 const PORT = process.env.PORT || 8000;
 const bodyParser = require('body-parser');
 const app = express();
 const cors = require('cors');
-// const cookieParser = require('cookie-parser')
-const authentication = require('./src/controllers/middleware')
+// const authentication = require('./src/controllers/middleware')
 
 // For handlebars
 const path = require('path');
 const {engine} = require('express-handlebars');
+
+// Routers
+const userRouter = require('./src/controllers/userRouter')
 const profileRouter = require('./src/controllers/profileRouter');
+const postRouter = require('./src/controllers/postRouter');
 
 // CORS
 app.use(cors({
@@ -33,15 +35,10 @@ app.set('view engine', 'hbs')
 app.set('views', path.join(__dirname, '/src/views'))
 
 // API End Point
-
-app.get('/', (req, res) => {
-    res.render('home')
-})
-
-
-
-app.use('/api', router)
+app.use('/api', userRouter)
 app.use('/user', profileRouter)
+app.use('/post', postRouter)
+
 
 app.listen(PORT, () => {
     console.log(`Server is listening at ${PORT}`);

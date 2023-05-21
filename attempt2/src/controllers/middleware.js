@@ -7,6 +7,7 @@ const secretkey = 'ab240f90aba431402985eddc45f4d413a33ebc925575c558168a98b2c3803
 
 const authentication = (req, res, next) => {
     try {
+        // do not delete
         console.log(`cookie: ${req.headers.cookie}`)
         if (!req.headers.cookie) {
             // Cookie not found

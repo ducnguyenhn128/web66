@@ -1,20 +1,20 @@
 const express = require('express');
 const {userCRUD, userProfile } = require('../model/user')
-const router = express.Router();
+const userRouter = express.Router();
 const morgan = require('morgan')
 morgan('short');
 const authentication = require('./middleware')
 const cookieParser = require('cookie-parser')
-router.use(cookieParser())
+userRouter.use(cookieParser())
 
 // Regiter an user
-router.post('/', userCRUD.post)
+userRouter.post('/', userCRUD.post)
 
 
 // User Login
-router.post('/login', userCRUD.login)
+userRouter.post('/login', userCRUD.login)
 // User Logout
-router.post('/logout', (req, res) => {
+userRouter.post('/logout', (req, res) => {
 
     res.clearCookie('jwtToken', {
         httpOnly: true,
@@ -24,7 +24,7 @@ router.post('/logout', (req, res) => {
 })
 
 // testing api check login
-router.get('/check-login', authentication, (req, res) => {
+userRouter.get('/check-login', authentication, (req, res) => {
     if (req.user) {
         // User is logged in
         res.status(200).json({ isLoggedIn: true });
@@ -34,15 +34,15 @@ router.get('/check-login', authentication, (req, res) => {
       }
 })
 
-router.get('/profile', authentication, userProfile)
+userRouter.get('/profile', authentication, userProfile)
 
 // After Login
-router.use(authentication)
-router.get('/all', userCRUD.get)
-router.get('/:id', userCRUD.getById)
-router.put('/:id', userCRUD.put)
-router.delete('/:id', userCRUD.delete)
+userRouter.use(authentication)
+userRouter.get('/all', userCRUD.get)
+userRouter.get('/:id', userCRUD.getById)
+userRouter.put('/:id', userCRUD.put)
+userRouter.delete('/:id', userCRUD.delete)
 
 
 
-module.exports = router
+module.exports = userRouter

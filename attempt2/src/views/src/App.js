@@ -9,12 +9,12 @@ import Posts from "./profile/posts";
 import Follows from "./profile/follows";
 import Password from "./profile/password";
 import Privacy from "./profile/privacy";
-import Header from "./header";
 import MyInfo from "./profile/myinfo";
-import ViewPost from "./posts";
+import ViewPost from "./posts/viewpost";
 import LogIn from "./login";
 import User from "./user/user";
 import Logout from "./login/logout";
+import NewPost from "./posts/newpost";
 
 function App() {
   const router = createBrowserRouter([
@@ -53,6 +53,14 @@ function App() {
     {
       path: 'user/:id/*',  //login required
       element: <User />
+    },
+    {
+      path: 'post', //login required
+      element: <NewPost />
+    },
+    {
+      path: 'post/:id',
+      element: <ViewPost />
     }
   ]);
 

@@ -3,10 +3,26 @@ import './styles.css'
 import './comment'
 import UserComment from "./comment";
 import YourComment from "./yourComment";
-const ViewPost = () => {
-    const fetchData = () => {
+import { useEffect } from "react";
+import axios from 'axios';
+import { useParams } from 'react-router-dom';
 
-    }
+const ViewPost = () => {
+    const {id} = useParams();
+    const URL = 'http://localhost:8000/post/' + id ;
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.get(URL, {
+                    withCredentials: true,
+                })
+                console.log(response.data)
+            } catch(err) {
+                console.log(err)
+            }
+        }
+        fetchData();
+    }, [URL])
     return (  
         <div>
             <div className="text-start mx-auto mt-4 p-3 viewpost">

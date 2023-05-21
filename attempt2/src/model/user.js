@@ -59,7 +59,7 @@ const userCRUD = {
     // 3. Create new User
     post: async function(req, res) {
         // const newUser = req.body;
-        console.log('received')
+        console.log('received a new user')
         const {username, email, password} = req.body;
         // checking username, email still in the DB ???
         try {
@@ -74,7 +74,12 @@ const userCRUD = {
             // hash password by 10 rounds
             const hashPassword = await bcrypt.hash(password, 10);
             // create new User
-            const newUser = new userModel({password: hashPassword, username, email, ...userProtype});
+            const newUser = new userModel({
+                password: hashPassword, 
+                username, 
+                email, 
+                ...userProtype
+            });
 
             await newUser.save();
             res.status(201).json({
