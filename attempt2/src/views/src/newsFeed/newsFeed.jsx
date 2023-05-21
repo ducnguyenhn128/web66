@@ -6,19 +6,17 @@ import {useEffect, useState} from 'react'
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-const Homepage = () => {
+const NewsFeed = () => {
     // const [logInStatus, setLogInState] = useState(false);
     const URL = 'http://localhost:8000/api/check-login'
     // First, check log in status
     const navigate = useNavigate();
     useEffect(() => {
-        
         const checkLoginStatus = async () => { 
             try {
                 const response = await axios.get('http://localhost:8000/api/check-login', {
                     withCredentials: true // with cookie
                 });
-    
                 console.log(response.data)
                 if (response.data === 'Invalid Token') {
                     console.log('Not Login');
@@ -31,7 +29,6 @@ const Homepage = () => {
                 console.log(err);
                 navigate('/login')
             }
-
         }
         checkLoginStatus();
     }, [navigate])
@@ -78,11 +75,7 @@ const Homepage = () => {
                     </div>
                     {/* render a list */}
                     <div class='bg-light'>
-                        <ViewPost />
-                        <ViewPost />
-                        <ViewPost />
-                        <ViewPost />
-                        <ViewPost />
+
                     </div>
                 </div>
                 
@@ -104,4 +97,4 @@ const Homepage = () => {
     );
 }
  
-export default Homepage;
+export default NewsFeed;

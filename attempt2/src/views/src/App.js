@@ -2,7 +2,6 @@ import React from "react";
 import "./App.css";
 
 import { RouterProvider, createBrowserRouter} from 'react-router-dom';
-import Homepage from "./homepage";
 import Register from "./register/register";
 import Profile from "./profile";
 import Posts from "./profile/posts";
@@ -15,12 +14,13 @@ import LogIn from "./login";
 import User from "./user/user";
 import Logout from "./login/logout";
 import NewPost from "./posts/newpost";
+import NewsFeed from "./newsFeed/newsFeed";
 
 function App() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <Homepage />,
+      element: <NewsFeed />,
     },
     {
       path: '/register',

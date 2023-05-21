@@ -3,28 +3,39 @@ import './styles.css'
 import './comment'
 import UserComment from "./comment";
 import YourComment from "./yourComment";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import Header from '../header'
 
 const ViewPost = () => {
     const {id} = useParams();
     const URL = 'http://localhost:8000/post/' + id ;
+    const [author, setAuthor] = useState('Philippe Bernard Victor Troussier')
+    const [title, setTitle] = useState('');
+    const [body, setBody] = useState('Lorem ipsum');
+    const [createdAt, setCreatedAt] = useState('')
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const response = await axios.get(URL, {
                     withCredentials: true,
                 })
-                console.log(response.data)
+                console.log(response.data)  
+                setAuthor(response.data.author)
+                setTitle(response.data.post.title)
+                setBody(response.data.post.body)
+                setCreatedAt(response.data.post.createdAt.slice(0,10))  // handle time
             } catch(err) {
                 console.log(err)
             }
+
         }
         fetchData();
     }, [URL])
     return (  
         <div>
+            <Header />
             <div className="text-start mx-auto mt-4 p-3 viewpost">
                 {/* user post */}
                 <div className="d-flex">
@@ -33,14 +44,17 @@ const ViewPost = () => {
                     </div>
 
                     <div className="viewpost_info"> 
-                        <h5 className="mb-1"><b>Philippe Bernard Victor Troussier </b> </h5>
-                        <a href="#">4 giờ</a>
+                        <h5 className="mb-1"><b>{author}</b> </h5>
+                        <a href="#">{createdAt}</a>
                     </div>
                 </div>
-
+                <div className="mt-4">
+                    <h3>{title}</h3>
+                </div>
 
                 <div className="mt-4">
-                    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.</p>
+                    <p>{body}</p>
+                    {/* <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.</p> */}
                 </div>
 
                 {/* Post stats */}
@@ -63,7 +77,7 @@ const ViewPost = () => {
                 {/* All comment here */}
                 {/* Render a list */}
                 <YourComment />
-                <UserComment />
+                {/* <UserComment /> */}
                     {/* Your comment */}
             </div>
         </div>

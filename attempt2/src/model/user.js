@@ -159,5 +159,14 @@ async function userProfile(req, res) {
         res.status(404).send('User not found')
     }
 }
+
+async function findUserById(id) {
+    try {
+        const foundUser = await userModel.findById(id);
+        return foundUser
+    } catch(err) {
+        console.log(err)
+    }
+}
 // Export object
-module.exports = {userCRUD, userProfile }
+module.exports = {userCRUD, userProfile, findUserById }

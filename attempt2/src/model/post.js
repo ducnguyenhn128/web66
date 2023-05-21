@@ -2,6 +2,8 @@ require('dotenv').config();
 const URL = process.env.mongoDB_URL;
 
 const mongoose = require('mongoose');
+const { findUserById } = require('./user');
+const userModel = require('./user')
 mongoose.connect(URL)
 // Choose Database
 const db = mongoose.connection.useDb('openspace');
@@ -52,7 +54,14 @@ const postCRUD = {
     // 1. Get recent post from user you follow
 
     // 2. Get recent post globally
-
+    lastestPostFeed: async function(req, res) {
+        const posts = await postModel.find()
+            .sort({ createdAt: -1 })
+            .limit(10)
+        
+        console.log(posts)
+        res.status(200).json(posts)
+    },
 
     // 3. Create a post: /post
     post : async function (req, res) {
@@ -80,7 +89,14 @@ const postCRUD = {
         try {
             const id = req.params.id;
             const foundPost = await postModel.findById(id);
-            res.status(200).json(foundPost)
+            // Find the author by the authod id: ex: author: '6468dde45ed7ce6ab3d8279f' => userID
+            const author = await findUserById(foundPost.author);
+            const authorName = author.info.fullname;
+
+            res.status(200).json({
+                post:foundPost,
+                author: authorName,
+            })
         } catch(err) {
             console.log(err);
             res.status(204).send();
