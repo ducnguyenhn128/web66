@@ -7,13 +7,15 @@
 const express = require('express');
 const morgan = require('morgan')
 morgan('short');
-const authentication = require('./middleware');
+const {authentication}   = require('./middleware');
 const profileCRUD = require('../model/profile')
 // const cookieParser = require('cookie-parser')
 // router.use(cookieParser())
 
 const profileRouter = express.Router();
 
-profileRouter.get('/:id', profileCRUD.get)
+profileRouter.use(authentication)
 
+profileRouter.get('/:id', profileCRUD.getAnUser)
+profileRouter.post('/:id/follow', profileCRUD.followAnUser)
 module.exports = profileRouter;

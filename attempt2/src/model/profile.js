@@ -38,21 +38,82 @@ const userSchema = {
 // Define Model
 const userModel = db.model('users', userSchema)
 
+// ============================================================================
+// Profile User (Other user)
+// 1. Get a profile: /user/:id
+// 2. Follow an user /user/:id/follow
+// 3. Unfollow an user /user/:id/unfollow
+
+
 const profileCRUD = {
     // 1. Get a profile: /user/:id
-    get: async function(req, res) {
+    getAnUser: async function(req, res) {
         try {
+            //find user with the id in the request URL
+            const userID = req.params.id
             const foundUser = await userModel.findById(req.params.id);
-            res.status(200).json(foundUser) //send back the user
+            // check follow Status between client vs user(id)
+            const clientID = req.user.userID;
+            const client = await userModel.findById(clientID);
+            // The array include all id that client follow
+            const clientFollowings = client.follow.following || []
+            // console.log(clientFollowing)
+            let followStatus = false;
+            if (clientFollowings.includes(userID)) {
+                followStatus = true
+            }
+            // console.log(`followStatus: ${followStatus}`)
+            // Send data back: user(id)infomation and follow Status
+            res.status(200).json({
+                user: foundUser,
+                followStatus: followStatus
+            }) 
+        } catch (err) {
+            res.status(404).send('User not found')
+        }
+    },
+    // 2. Follow an user
+    followAnUser: async function (req, res) {
+        try {
+            //find user with the id in the request URL
+            const userID = req.params.id
+            const foundUser = await userModel.findById(req.params.id);
+            // check follow Status between client vs user(id)
+            const clientID = req.user.userID;
+            const client = await userModel.findById(clientID);
+            // The array include all id that client follow
+            const clientFollowings = client.follow.following || []
+            // console.log(clientFollowing)
+            // If client has followed user already
+            if (clientFollowings.includes(userID)) {
+                res.status(400).send()
+            }
+            // Handle client following user
+            clientFollowings.push(userID); // update
+
+            await userModel.findByIdAndUpdate(
+                clientID,
+                { $push: {'follow.following' : userID}} ,
+                {new: true}
+            )
+            
+            // Handle user has a new follower
+            await userModel.findByIdAndUpdate(
+                userID,
+                { $push: {'follow.follower' : clientID}} ,
+                {new: true}
+            )
+
+            const updateClient = {...client, }
+            res.status(201).send();
+
         } catch (err) {
             res.status(404).send('User not found')
         }
     }
-    // follow an user
 
 
-
-    // unfollow an user
+    // 3. Unfollow an user
 }
 
 module.exports = profileCRUD;

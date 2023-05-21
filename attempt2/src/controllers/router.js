@@ -3,7 +3,7 @@ const {userCRUD, userProfile } = require('../model/user')
 const router = express.Router();
 const morgan = require('morgan')
 morgan('short');
-const authentication = require('./middleware')
+const {authentication} = require('./middleware')
 const cookieParser = require('cookie-parser')
 router.use(cookieParser())
 
