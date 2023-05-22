@@ -12,6 +12,7 @@ const NewsFeed = () => {
     const URL1 = 'http://localhost:8000/post/feed-follow'
     const navigate = useNavigate()
     const [allPosts, setAllPosts] = useState([]) ;
+
     useEffect(() => {
         const fetchData = async () => {
             const response = await axios.get(URL1, {
@@ -63,11 +64,10 @@ const NewsFeed = () => {
                         </Button>
 
                     </div>
-                    {/* Order */}
+                    {/* Filter */}
                     <div class="d-flex bg-white my-3 p-3 border border-dark-subtle rounded">
-                        <p class="my-auto me-2">Trending</p>
-                        <p class="my-auto me-auto">Newest</p>
-                        <p class='my-auto'>In Week</p>
+                        <p class="my-auto me-2">All article</p>
+                        <p class="my-auto me-2">Your Following</p>
                     </div>
 
                     {/* All Posts in News Feed */}
