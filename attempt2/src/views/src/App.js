@@ -16,6 +16,7 @@ import Logout from "./login/logout";
 import NewPost from "./posts/newpost";
 import NewsFeed from "./newsFeed/newsFeed";
 import Homepage from "./home/newsFeed";
+import TagPage from "./tag/tag";
 
 function App() {
   const router = createBrowserRouter([
@@ -66,6 +67,10 @@ function App() {
     {
       path: 'post/:id',
       element: <ViewPost />
+    },
+    {
+      path: 'tag/:tag',
+      element: <TagPage />
     }
   ]);
 

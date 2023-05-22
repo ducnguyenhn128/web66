@@ -1,3 +1,13 @@
+// ============================================================================
+// Post Model : /post
+// 1. Get recent post from user you follow: done
+// 2. Get recent post globally : done
+// 3. Create a post: /post : DONE
+// 4. Get a post by id : DONE
+// 5. Update a post
+// 6. Delete a post
+// 7. Get all posts by tag
+
 require('dotenv').config();
 const URL = process.env.mongoDB_URL;
 const mongoose = require('mongoose');
@@ -143,10 +153,28 @@ const postCRUD = {
             res.status(204).send();
         }
 
-    }
+    },
     // 5. Update a post
 
     // 6. Delete a post
+
+    // 7. Get all posts by tag
+    getPostByTag: async function (req, res) {
+        try {
+            const tag = req.params.tag;
+            console.log(tag)
+            const posts = await postModel
+                .find({ tagList: { $in : [tag] }  })
+                .sort({ createdAt: -1 })
+                .limit(10)
+                .lean();
+
+                res.status(200).json(posts);
+        } catch(err) {
+            console.log(err);
+            res.status(404).send();
+        }
+    }
 }
 
 

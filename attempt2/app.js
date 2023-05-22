@@ -14,6 +14,7 @@ const {engine} = require('express-handlebars');
 const userRouter = require('./src/controllers/userRouter')
 const profileRouter = require('./src/controllers/profileRouter');
 const postRouter = require('./src/controllers/postRouter');
+const tagRouter = require('./src/controllers/tagRouter');
 
 // CORS
 app.use(cors({
@@ -38,7 +39,7 @@ app.set('views', path.join(__dirname, '/src/views'))
 app.use('/api', userRouter)
 app.use('/user', profileRouter)
 app.use('/post', postRouter)
-
+app.use('/tag', tagRouter)
 
 app.listen(PORT, () => {
     console.log(`Server is listening at ${PORT}`);
