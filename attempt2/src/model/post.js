@@ -1,6 +1,5 @@
 require('dotenv').config();
 const URL = process.env.mongoDB_URL;
-
 const mongoose = require('mongoose');
 const { findUserById } = require('./user');
 const userModel = require('./user')
@@ -50,15 +49,57 @@ const postSchema = {
 // Define model
 const postModel = db.model('posts', postSchema)
 
+// Utility function
+// getAuthor from the id
+const getAuthor = async (post) => {
+    const authorID = post.author ? post.author : '';
+    const author = await findUserById(authorID);
+    if (author.info && author.info.fullname) {
+        return author.info.fullname
+    } else {
+        return ''
+    }
+    // return authorName;
+}
+
+
 const postCRUD = {
     // 1. Get recent post from user you follow
+    userFollowFeed: async function(req, res) {
+        // query user follower array 
+        const userID = req.user.userID;
+        const user = await findUserById(userID);
 
-    // 2. Get recent post globally
+        const userFollowing = user.follow.following;
+        console.log(userFollowing)
+
+        const posts = await postModel.find({ author: { $in: userFollowing }})
+        .sort({ createdAt: -1 })
+        .limit(10)
+        .lean()
+    // handle array 
+    await Promise.all(
+        posts.map(async (post) => {
+            const authorname = await getAuthor(post);
+            post['authorname'] = authorname
+        })
+    )
+    console.log(posts)
+    res.status(200).json(posts)
+    },
+    // 2. Get recent post globally: return an array
     lastestPostFeed: async function(req, res) {
         const posts = await postModel.find()
             .sort({ createdAt: -1 })
             .limit(10)
-        
+            .lean()
+        // handle array 
+        await Promise.all(
+            posts.map(async (post) => {
+                const authorname = await getAuthor(post);
+                post['authorname'] = authorname
+            })
+        )
         console.log(posts)
         res.status(200).json(posts)
     },
@@ -107,5 +148,8 @@ const postCRUD = {
 
     // 6. Delete a post
 }
+
+
+
 
 module.exports = postCRUD;

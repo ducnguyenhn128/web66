@@ -1,5 +1,5 @@
 // ============================================================================
-// Post Router
+// Post Router: /post
 // 1. Get recent post from user you follow
 // 2. Get recent post globally : 
 // 3. Create a post: /post : DONE
@@ -10,16 +10,20 @@
 const express = require('express');
 const authentication = require('./middleware');
 const postCRUD = require('../model/post');
-// const profileCRUD = require('../model/profile')
 
 const postRouter = express.Router();
-// get all post in feed
 
-postRouter.get('/feed', postCRUD.lastestPostFeed)
-
+// middleware
 postRouter.use(authentication)
+// 1. Get recent post from user you follow
+postRouter.get('/feed-follow', postCRUD.userFollowFeed)
 
-postRouter.post('/', postCRUD.post)
+// 2. Get recent post globally : Return an array
+postRouter.get('/feed-global', postCRUD.lastestPostFeed)
+
+// 3. Create a post: /post
+postRouter.post('/', postCRUD.post)  
+// 4. Get a post by id 
 postRouter.get('/:id', postCRUD.getPostById)
 
 

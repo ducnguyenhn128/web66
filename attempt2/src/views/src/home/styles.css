@@ -2,9 +2,6 @@ body {
     background-color: rgb(241, 241, 241);
 }
 
-.newsfeed1 li {
-    list-style: none;
-}
 
 .right_column * , .left_column *{
     background-color: #F8F9FA;

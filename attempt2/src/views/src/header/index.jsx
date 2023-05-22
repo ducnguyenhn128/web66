@@ -17,7 +17,7 @@ const Header = () => {
     <div class='home-header p-0'>
       <div class='d-flex justify-content-between bg-success'>
           <div class='col-2 my-auto text-white'>
-              <a href='/'>
+              <a href='/feed'>
                 <img src={favicon} alt='logo' style={{height: '60px'}}/>
 
               </a>

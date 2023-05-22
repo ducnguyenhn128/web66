@@ -5,36 +5,45 @@ import Header from "../header";
 import {useEffect, useState} from 'react'
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import FeedPost from "./feedPost";
+// import FeedPost from "./homepage";
 
-const NewsFeed = () => {
-    const URL = 'http://localhost:8000/post/feed-global' ;
-    const URL1 = 'http://localhost:8000/post/feed-follow'
-    const navigate = useNavigate()
-    const [allPosts, setAllPosts] = useState([]) ;
+const Homepage = () => {
+    // const [logInStatus, setLogInState] = useState(false);
+    const URL = 'http://localhost:8000/api/check-login'
+    // First, check log in status
+    const navigate = useNavigate();
     useEffect(() => {
-        const fetchData = async () => {
-            const response = await axios.get(URL1, {
-                withCredentials: true,
-            })
-            console.log(response.data) 
-            // do not delete
-            setAllPosts(response.data)
+        const checkLoginStatus = async () => { 
+            try {
+                const response = await axios.get('http://localhost:8000/api/check-login', {
+                    withCredentials: true // with cookie
+                });
+                console.log(response.data)
+                if (response.data === 'Invalid Token') {
+                    console.log('Not Login');
+                    navigate('/login')
+                } else {
+                    // setLogInState(true);
+                    console.log('Log In')
+                }
+            } catch(err) {
+                console.log(err);
+                navigate('/login')
+            }
         }
-        fetchData();
-    }, [])
+        checkLoginStatus();
+    }, [navigate])
 
-    // Render a list: all post in newsfeed
-    const newsfeed1 = allPosts.map((el, index) => (
-        <li key={index}> <FeedPost info = {el}/> </li>
-      ));
-
+    
     return (
         <div>
             <Header />
             <div className="mt-1 d-flex justify-content-between bg-light">
+                {/* <h2>Home</h2>
+                <Link to='/profile'>Profile</Link> */}
+                
                 {/* Left Column */}
-                <div className='col-2 text-start bg-light left_column '>
+                <div class='col-2 text-start bg-light left_column '>
                     <h5 class='mt-2 ms-2'>Popular tags</h5>
 
                     {/* render a list */}
@@ -50,18 +59,14 @@ const NewsFeed = () => {
                 <div className='col-6  bg-light'>
                     {/* Write a post */}
                     <div class='mt-3 p-3 bg-white d-flex'>
-                        <div className='user-avt'>
+                        <div class='user-avt'>
 
                         </div>
-                        {/* <input 
-                            className='p-1 flex-fill border border-dark-subtle rounded bg-light' 
-                            placeholder="  Write your post"> 
-                        </input> */}
 
-                        <Button variant="light" className="flex-fill text-start"  onClick = {() => {navigate('/post')}} >
-                            Write your post ...
-                        </Button>
-
+                        <input 
+                            class='p-1 flex-fill border border-dark-subtle rounded bg-light' 
+                            placeholder="write your post"> 
+                        </input>
                     </div>
                     {/* Order */}
                     <div class="d-flex bg-white my-3 p-3 border border-dark-subtle rounded">
@@ -69,12 +74,12 @@ const NewsFeed = () => {
                         <p class="my-auto me-auto">Newest</p>
                         <p class='my-auto'>In Week</p>
                     </div>
+                    {/* render a list */}
+                    <div class='bg-light'>
 
-                    {/* All Posts in News Feed */}
-                    <div className='bg-light newsfeed1'>
-                        {newsfeed1}
                     </div>
                 </div>
+                
                 {/* Right column */}
                 <div class='col-2 text-start bg-light right_column mt-2'>
                     <p>Người liên hệ</p>
@@ -88,8 +93,9 @@ const NewsFeed = () => {
 
                 </div>
             </div>  
+
         </div>
     );
 }
  
-export default NewsFeed;
+export default Homepage;
