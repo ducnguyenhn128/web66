@@ -36,7 +36,7 @@ const ViewPost = () => {
     return (  
         <div>
             <Header />
-            <div className="text-start mx-auto mt-4 p-3 viewpost">
+            <div className="text-start mx-auto col-4 mt-4 p-3 viewpost">
                 {/* user post */}
                 <div className="d-flex">
                     <div className="user-comment-avt">

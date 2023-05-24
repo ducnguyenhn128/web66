@@ -1,27 +1,38 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
+import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 
 const FeedPost = (props) => {
     // props: author (name), tile, body, createdAt,
     // props: tagList
 
     const info = props.info;
-
-    const {author, title, body, createdAt, authorname} = info
+    const {author, title, body, createdAt, authorname, _id} = info
     // time of post
     const time = createdAt && typeof createdAt === 'string' ? createdAt.slice(0, 10) : '';
+    const author_page = '/user/' + author;
+    const post_link = '/post/' + _id;
     return (  
 
             <div className="text-start bg-white p-3 mb-3 border border-white rounded">
-                {/* Author */}
+                {/* Author && Time && More Setting */}
                 <div className="d-flex">
                     <div className="user-comment-avt">
                     </div>
 
-                    <div className="viewpost_info"> 
-                        <h5 className="mb-1"><b>{authorname}</b> </h5>
-                        <a href="#">{time}</a>
+                    {/* Author and Time */}
+                    <div className="viewpost_info flex-grow-1"> 
+                        {/* <h5 className="mb-1"><b>{authorname}</b> </h5> */}
+                        <h5 className="mb-1">
+                            <a href={author_page} className='fs-5 fw-bold'>{authorname}</a> 
+                        </h5>
+                        <a href={post_link}>{time}</a>
+                    </div>
+
+                    {/* More: Delete, History */}
+                    <div>
+                        <MoreHorizIcon />
                     </div>
                 </div>
                 {/* Title */}
