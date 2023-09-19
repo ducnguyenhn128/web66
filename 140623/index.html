@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Real-time Football Results</title>
+</head>
+<body>
+  <div id="results-container"></div>
+
+  <script src="https://cdn.socket.io/4.3.1/socket.io.min.js"></script>
+
+  <script>
+    // Connect to the Socket.io server
+    const socket = io();
+
+    // Handle the 'connect' event
+    socket.on('connect', () => {
+      console.log('Connected to the server');
+    });
+
+    // Handle the 'disconnect' event
+    socket.on('disconnect', () => {
+      console.log('Disconnected from the server');
+    });
+
+    // Handle the 'footballResults' event
+    socket.on('footballResults', (results) => {
+      const resultsContainer = document.getElementById('results-container');
+      resultsContainer.innerHTML = ''; // Clear previous results
+
+      // Render the updated results
+      results.forEach((result) => {
+        const resultElement = document.createElement('div');
+        resultElement.textContent = `${result.homeTeam} ${result.score} ${result.awayTeam}`;
+        resultsContainer.appendChild(resultElement);
+      });
+    });
+  </script>
+</body>
+</html>
